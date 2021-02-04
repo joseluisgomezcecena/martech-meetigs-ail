@@ -1,22 +1,12 @@
 <?php
-/*
-$stmt = $connection->prepare(
-    "SELECT * FROM projects 
-    LEFT JOIN project_phase ON actions.action_phase = project_phase.phase_id 
-    LEFT JOIN projects ON actions.action_project_id = projects.project_id 
-    LEFT JOIN departments ON actions.action_department = departments.department_id
-    WHERE action_id = ?"
-);
-*/
 $stmt = $connection->prepare(
     "SELECT * FROM actions  
-    LEFT JOIN projects ON actions.action_project_id = projects.project_id
-    LEFT JOIN project_phase ON actions.action_phase = project_phase.phase_id 
+    LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id 
     LEFT JOIN departments ON actions.action_department = departments.department_id 
-    WHERE projects.project_id = ? ORDER BY actions.action_promise_date;"
+    WHERE meetings.meeting_id = ? ORDER BY actions.action_promise_date;"
 );
 
-$stmt->bind_param("i", $_GET['project_id']);
+$stmt->bind_param("i", $_GET['meeting_id']);
 $stmt->execute();
 
 $result = $stmt->get_result();
@@ -26,12 +16,12 @@ if($result->num_rows === 0)
 $row_data = $result->fetch_array();
 $stmt->close();
 ?>
-<h1 class="h3 mb-4 text-gray-800">Project <b><?php echo $row_data['project_name'] ?></b> Report</h1>
+<h1 class="h3 mb-4 text-gray-800">Meeting <b><?php echo $row_data['meeting_name'] ?></b> Report</h1>
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.php?page=report_active_list">Reports</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Report <?php echo $row_data['project_name'] ?></li>
+    <li class="breadcrumb-item active" aria-current="page">Report <?php echo $row_data['meeting_name'] ?></li>
   </ol>
 </nav>
 
@@ -53,7 +43,6 @@ $stmt->close();
             <table  style="font-size: 14px; vertical-align:middle; " class="table  order-column " id="dataTableExcel" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>Phase</th>
                     <th>Action</th>
                     <th>Description</th>
                     <th>Department</th>
@@ -70,10 +59,10 @@ $stmt->close();
 
                     
                     $query = "SELECT * FROM actions
-                    LEFT JOIN projects ON actions.action_project_id = projects.project_id
+                    LEFT JOIN meetings ON actions.action_project_id = meetings.project_id
                     LEFT JOIN project_phase ON actions.action_phase = project_phase.phase_id 
                     LEFT JOIN departments ON actions.action_department = departments.department_id 
-                    WHERE projects.project_id = {$_GET['project_id']} ORDER BY actions.action_promise_date";
+                    WHERE meetings.project_id = {$_GET['project_id']} ORDER BY actions.action_promise_date";
                 
                     $result = mysqli_query($connection, $query);
                     while($row = mysqli_fetch_array($result)):
@@ -175,7 +164,7 @@ $stmt->close();
                     <?php 
                     $query = "SELECT * FROM action_files 
                     LEFT JOIN actions ON action_files.file_action_id = actions.action_id 
-                    LEFT JOIN projects ON actions.action_project_id = projects.project_id 
+                    LEFT JOIN meetings ON actions.action_project_id = meetings.project_id 
                     WHERE project_id = {$_GET['project_id']}";
 
                     $result = mysqli_query($connection, $query);

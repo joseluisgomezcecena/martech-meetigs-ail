@@ -142,7 +142,7 @@ if($_SESSION['quatroapp_user_level'] == 0)
                                 <?php
                                     if($row['action_status'] == 0 && $row['action_promise_date'] <= date("Y-m-d"))
                                     {
-                                        echo "Late";
+                                        echo "<b style='color:red'>Late</b>";
                                     }   
                                     elseif($row['action_status'] == 0 && $row['action_promise_date'] > date("Y-m-d"))
                                     {
@@ -151,7 +151,16 @@ if($_SESSION['quatroapp_user_level'] == 0)
                                 ?>
                             </td>
                             <td>
-                            complete
+                            <?php 
+                            if($row['action_complete']== 1)
+                            {
+                                echo "Completed";
+                            }
+                            else
+                            {
+                                echo "On Going";
+                            }
+                            ?>
                             </td>
                             <td>
                                 <a href='index.php?page=view_update&action_id=<?php echo $row['action_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='View action details' style='font-size: 20px; color:#b5b5b5' class='fas fa-eye options'></i></a>

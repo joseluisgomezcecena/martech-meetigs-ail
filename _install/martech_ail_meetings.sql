@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2021 at 02:59 AM
+-- Generation Time: Feb 04, 2021 at 03:33 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `martech_ail`
+-- Database: `martech_ail_meetings`
 --
 
 -- --------------------------------------------------------
@@ -29,16 +29,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `actions` (
   `action_id` int(11) NOT NULL,
-  `action_project_id` int(11) NOT NULL,
-  `action_phase` int(11) NOT NULL,
+  `action_meeting_id` int(11) NOT NULL,
   `action_name` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
   `action_description` text COLLATE utf8_spanish2_ci NOT NULL,
   `action_department` int(11) NOT NULL,
-  `action_start_date` date NOT NULL,
   `action_promise_date` date NOT NULL,
   `action_end_date` date NOT NULL,
   `action_status` int(1) NOT NULL,
-  `action_percent` int(3) NOT NULL,
   `action_complete` int(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
@@ -46,22 +43,9 @@ CREATE TABLE `actions` (
 -- Dumping data for table `actions`
 --
 
-INSERT INTO `actions` (`action_id`, `action_project_id`, `action_phase`, `action_name`, `action_description`, `action_department`, `action_start_date`, `action_promise_date`, `action_end_date`, `action_status`, `action_percent`, `action_complete`) VALUES
-(20, 15, 38, 'Design UI', 'Design UI using Bootstrap 4', 1, '2021-01-11', '2021-01-15', '0000-00-00', 0, 0, 0),
-(21, 14, 34, 'Create Flowchart', 'Create Flowchart for pseudocode followup', 1, '2021-01-12', '2021-01-13', '2021-01-13', 0, 100, 1),
-(22, 14, 34, 'Write Pseudo Code', 'Write pseudo code for review', 1, '2021-01-13', '2021-01-13', '2021-01-13', 0, 100, 1),
-(23, 14, 34, 'Review pseudocode and flowchart with team', 'Review work for approval ', 1, '2021-01-13', '2021-01-13', '2021-01-14', 0, 100, 1),
-(24, 14, 35, 'SQL Database Design', 'Create Tables needed for application on development server (Local XAMPP Installation)', 1, '2021-01-13', '2021-01-14', '2021-01-14', 0, 100, 1),
-(25, 14, 35, 'Develop Users Module', 'Develop Users Module With CRUD Operations', 1, '2021-01-14', '2021-01-15', '2021-01-16', 0, 100, 1),
-(26, 14, 35, 'Develop Projects Module', 'Develop Projects Module UI and Backend Classes', 1, '2021-01-14', '2021-01-17', '0000-00-00', 0, 0, 0),
-(27, 14, 35, 'Develop Actions Module', 'Develop Actions Module With CRUD operations and sync with projects Module', 1, '2021-01-17', '2021-01-19', '0000-00-00', 0, 0, 0),
-(28, 14, 35, 'Develop Updates, File Uploads And Progress Modules', 'Develop modules for updates on projects and actions, the actions module should contain a file upload module with validations', 1, '2021-01-18', '2021-01-21', '0000-00-00', 0, 0, 0),
-(29, 14, 35, 'Develop AJAX alert system', 'Ajax alert system for cleaner and faster performance', 1, '2021-01-21', '2021-01-23', '0000-00-00', 0, 0, 0),
-(30, 14, 35, 'Develop Reports Modules With Export Functions', 'Reporting capabilities will be added as well as export modules for EXCEL CSV and PDF files', 1, '2021-01-22', '2021-01-26', '0000-00-00', 0, 0, 0),
-(31, 14, 35, 'Add Security based on user level', 'Users will be separated by level granting permissions for different views', 1, '2021-01-26', '2021-01-28', '0000-00-00', 0, 0, 0),
-(32, 14, 35, 'Internal Testing', 'Test App internally', 1, '2021-01-27', '2021-01-30', '0000-00-00', 0, 0, 0),
-(33, 14, 36, 'Pilot Run', 'Test prototype version', 2, '2021-01-30', '2021-02-05', '0000-00-00', 0, 0, 0),
-(34, 14, 37, 'Push to Production Server', 'Push source code to production server mxmtsvrandon1 and Build SQL Database tables.', 1, '2021-02-08', '2021-02-09', '0000-00-00', 0, 0, 0);
+INSERT INTO `actions` (`action_id`, `action_meeting_id`, `action_name`, `action_description`, `action_department`, `action_promise_date`, `action_end_date`, `action_status`, `action_complete`) VALUES
+(1, 4, 'accion uno', 'observacion', 1, '2021-02-28', '0000-00-00', 0, 0),
+(2, 4, 'accion 2', 'problema 2', 3, '2021-03-03', '0000-00-00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -84,7 +68,7 @@ CREATE TABLE `action_files` (
 --
 
 INSERT INTO `action_files` (`file_id`, `file_project_id`, `file_action_id`, `file_user_id`, `file_name`, `file_url`, `file_active`) VALUES
-(32, 0, 25, 21, 'Snapshot of users module UI', 'uploads/actions/2021-01-16938572758Capture.PNG', 1);
+(1, 0, 1, 21, 'File for meeting 4 action 1', 'uploads/actions/2021-02-03864473107juve.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -106,31 +90,10 @@ CREATE TABLE `action_responsible` (
 --
 
 INSERT INTO `action_responsible` (`a_responsible_id`, `a_action_id`, `a_responsible_user`, `a_responsible_main`, `a_responsible_added_by`, `a_responsible_date`) VALUES
-(235, 20, 21, 1, 21, '2021-01-11'),
-(236, 21, 21, 1, 21, '2021-01-15'),
-(237, 22, 21, 1, 21, '2021-01-15'),
-(238, 23, 21, 1, 21, '2021-01-15'),
-(239, 23, 129, 0, 21, '2021-01-15'),
-(240, 23, 143, 0, 21, '2021-01-15'),
-(241, 24, 21, 1, 21, '2021-01-15'),
-(242, 25, 21, 1, 21, '2021-01-15'),
-(243, 26, 21, 1, 21, '2021-01-15'),
-(244, 27, 21, 1, 21, '2021-01-15'),
-(245, 28, 21, 1, 21, '2021-01-15'),
-(246, 29, 21, 1, 21, '2021-01-15'),
-(247, 30, 21, 1, 21, '2021-01-15'),
-(248, 31, 21, 1, 21, '2021-01-15'),
-(249, 32, 21, 1, 21, '2021-01-15'),
-(250, 32, 144, 0, 21, '2021-01-15'),
-(251, 33, 151, 1, 21, '2021-01-15'),
-(252, 33, 21, 0, 21, '2021-01-15'),
-(253, 33, 129, 0, 21, '2021-01-15'),
-(254, 33, 143, 0, 21, '2021-01-15'),
-(255, 33, 144, 0, 21, '2021-01-15'),
-(256, 33, 145, 0, 21, '2021-01-15'),
-(257, 33, 146, 0, 21, '2021-01-15'),
-(258, 33, 147, 0, 21, '2021-01-15'),
-(259, 34, 21, 1, 21, '2021-01-15');
+(4, 1, 21, 0, 21, '2021-02-03'),
+(5, 1, 143, 0, 21, '2021-02-03'),
+(6, 1, 144, 0, 21, '2021-02-03'),
+(7, 2, 143, 0, 21, '2021-02-03');
 
 -- --------------------------------------------------------
 
@@ -152,14 +115,9 @@ CREATE TABLE `action_updates` (
 --
 
 INSERT INTO `action_updates` (`a_update_id`, `a_update_action_id`, `a_update_descr`, `a_update_user`, `a_update_date`, `a_update_percent`) VALUES
-(26, 20, 'Update number 1 ', 21, '2021-01-15', 0),
-(27, 20, 'update number 2 ', 21, '2021-01-15', 0),
-(28, 21, 'ACTION COMPLETED! - 2021-01-15: Flow Chart was created with no issues', 21, '2021-01-15', 1),
-(29, 22, 'ACTION COMPLETED! - 2021-01-15: Pseudo Code was written based on flowchart', 21, '2021-01-15', 1),
-(30, 23, 'ACTION COMPLETED! - 2021-01-15: Held a meeting with team and flowchart was approved as well as pseudo code', 21, '2021-01-15', 1),
-(31, 24, 'ACTION COMPLETED! - 2021-01-15: Relational SQL Database created, contains  12 tables.  this database was backed up to GIT profile', 21, '2021-01-15', 1),
-(32, 25, 'ACTION COMPLETED! - 2021-01-15: Users module was completed with no issues', 21, '2021-01-15', 1),
-(33, 21, 'new update', 21, '2021-01-18', 0);
+(1, 1, 'un update para meeting 4 accion 1 ', 21, '2021-02-02', 0),
+(2, 1, 'otro update', 21, '2021-02-02', 0),
+(3, 1, 'ACTION ON GOING - 2021-02-02: On going update', 21, '2021-02-02', 1);
 
 -- --------------------------------------------------------
 
@@ -196,106 +154,57 @@ INSERT INTO `departments` (`department_id`, `department_name`, `department_activ
 -- --------------------------------------------------------
 
 --
--- Table structure for table `meeting`
+-- Table structure for table `meetings`
 --
 
-CREATE TABLE `meeting` (
+CREATE TABLE `meetings` (
   `meeting_id` int(11) NOT NULL,
-  `meeting_action_id` int(11) NOT NULL,
-  `meeting_project_id` int(11) NOT NULL,
+  `meeting_department_id` int(11) NOT NULL,
+  `meeting_name` varchar(255) COLLATE utf8mb4_spanish2_ci NOT NULL,
   `meeting_date` date NOT NULL,
-  `meeting_update` text COLLATE utf8_spanish2_ci NOT NULL,
-  `meeting_reason` varchar(255) COLLATE utf8_spanish2_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+  `meeting_active` int(1) NOT NULL DEFAULT 1,
+  `meeting_complete` int(1) NOT NULL,
+  `meeting_user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Dumping data for table `meetings`
+--
+
+INSERT INTO `meetings` (`meeting_id`, `meeting_department_id`, `meeting_name`, `meeting_date`, `meeting_active`, `meeting_complete`, `meeting_user_id`) VALUES
+(1, 1, 'edited', '2021-01-20', 1, 0, 21),
+(2, 2, 'fdsfdsdffd2', '2021-01-20', 0, 0, 21),
+(3, 1, 'meeting test monday', '2021-02-01', 1, 0, 21),
+(4, 2, 'meeting caro', '2021-02-01', 1, 0, 151);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `meeting_responsible`
+-- Table structure for table `meeting_attendees`
 --
 
-CREATE TABLE `meeting_responsible` (
-  `meeting_responsible_id` int(11) NOT NULL,
-  `m_r_user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `notpermitted`
---
-
-CREATE TABLE `notpermitted` (
-  `perm_id` int(11) NOT NULL,
-  `perm_user_id` int(11) NOT NULL,
-  `p_id` int(11) NOT NULL,
-  `p_a` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+CREATE TABLE `meeting_attendees` (
+  `meeting_attendee_id` int(11) NOT NULL,
+  `m_a_meeting_id` int(11) NOT NULL,
+  `meeting_user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
--- Dumping data for table `notpermitted`
+-- Dumping data for table `meeting_attendees`
 --
 
-INSERT INTO `notpermitted` (`perm_id`, `perm_user_id`, `p_id`, `p_a`, `date`) VALUES
-(1, 145, 15, 0, '2021-01-15 00:49:25');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `projects`
---
-
-CREATE TABLE `projects` (
-  `project_id` int(11) NOT NULL,
-  `project_name` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `project_description` text COLLATE utf8_spanish2_ci NOT NULL,
-  `project_department` int(11) NOT NULL,
-  `project_owner` int(11) NOT NULL,
-  `project_support` int(11) NOT NULL,
-  `project_start_date` date NOT NULL,
-  `project_promise_date` date NOT NULL,
-  `project_end_date` date NOT NULL,
-  `project_status` int(1) NOT NULL COMMENT '0 cancelled\r\n1 complete\r\n2 suspended',
-  `project_active` int(1) NOT NULL DEFAULT 1,
-  `project_complete` int(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Dumping data for table `projects`
---
-
-INSERT INTO `projects` (`project_id`, `project_name`, `project_description`, `project_department`, `project_owner`, `project_support`, `project_start_date`, `project_promise_date`, `project_end_date`, `project_status`, `project_active`, `project_complete`) VALUES
-(14, 'Develop AIL App', 'Develop an application to track projects and actions as well as ECD\'s, this app will send notifications for late promise dates, the app will be a complete project management tool and should replace all spreadsheets used for project management', 1, 135, 21, '2021-01-08', '2021-03-31', '0000-00-00', 0, 1, 0),
-(15, 'Develop Purchase Requests Visual', 'Develop a visual for the purchase requests App, so users can look up status of their purchase requests', 1, 135, 144, '2021-01-08', '2021-04-30', '0000-00-00', 0, 1, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `project_phase`
---
-
-CREATE TABLE `project_phase` (
-  `phase_id` int(11) NOT NULL,
-  `project_id` int(11) NOT NULL,
-  `phase_name` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `phase_active` int(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Dumping data for table `project_phase`
---
-
-INSERT INTO `project_phase` (`phase_id`, `project_id`, `phase_name`, `phase_active`) VALUES
-(34, 14, 'Analysis', 1),
-(35, 14, 'Development', 1),
-(36, 14, 'Prototype', 1),
-(37, 14, 'Implementation', 1),
-(38, 15, 'Analysis', 1),
-(39, 15, 'Development', 1),
-(40, 15, 'Prototype', 1),
-(41, 15, 'Implementation', 1),
-(42, 14, '', 1);
+INSERT INTO `meeting_attendees` (`meeting_attendee_id`, `m_a_meeting_id`, `meeting_user_id`) VALUES
+(3, 2, 143),
+(4, 2, 144),
+(5, 3, 143),
+(6, 3, 144),
+(7, 4, 21),
+(8, 4, 135),
+(9, 4, 143),
+(10, 4, 144),
+(13, 1, 129),
+(14, 1, 144),
+(15, 1, 145);
 
 -- --------------------------------------------------------
 
@@ -339,21 +248,6 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_password_hash`, `user_email`,
 (151, 'cobregon', '$2y$10$V7s2qXvNnAa6Wpj8/URoCOpa89OV4aCfygivHtZ6.cnG2t7V9yh1a', 'cobregon@martechmedical.com', 'Carolina', 'Obregon', '12235', 2, '2021-01-15 17:31:28', '2021-01-18 23:25:47', '', '+52', 1, 'uploads/user_img/noimage.png', 0, 0, 1),
 (152, 'fnava', '$2y$10$GQ7GsOrBj1kO8c9aW98p7.s12MY05NQro3Ib3tuNoCdDT..eDPwNu', 'fnava@martechmedical.com', 'Edmundo', 'Nava', '1000', 2, '2021-01-18 11:11:41', '2021-01-18 23:18:39', '', '+52', 1, 'uploads/user_img/noimage.png', 0, 0, 1);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user_actions`
---
-
-CREATE TABLE `user_actions` (
-  `user_action_id` int(11) NOT NULL,
-  `user_action` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
-  `user_action_project` int(11) NOT NULL,
-  `user_action_action` int(11) NOT NULL,
-  `user_action_file` int(11) NOT NULL,
-  `user_action_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
 --
 -- Indexes for dumped tables
 --
@@ -389,34 +283,16 @@ ALTER TABLE `departments`
   ADD PRIMARY KEY (`department_id`);
 
 --
--- Indexes for table `meeting`
+-- Indexes for table `meetings`
 --
-ALTER TABLE `meeting`
+ALTER TABLE `meetings`
   ADD PRIMARY KEY (`meeting_id`);
 
 --
--- Indexes for table `meeting_responsible`
+-- Indexes for table `meeting_attendees`
 --
-ALTER TABLE `meeting_responsible`
-  ADD PRIMARY KEY (`meeting_responsible_id`);
-
---
--- Indexes for table `notpermitted`
---
-ALTER TABLE `notpermitted`
-  ADD PRIMARY KEY (`perm_id`);
-
---
--- Indexes for table `projects`
---
-ALTER TABLE `projects`
-  ADD PRIMARY KEY (`project_id`);
-
---
--- Indexes for table `project_phase`
---
-ALTER TABLE `project_phase`
-  ADD PRIMARY KEY (`phase_id`);
+ALTER TABLE `meeting_attendees`
+  ADD PRIMARY KEY (`meeting_attendee_id`);
 
 --
 -- Indexes for table `users`
@@ -427,12 +303,6 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `user_email` (`user_email`);
 
 --
--- Indexes for table `user_actions`
---
-ALTER TABLE `user_actions`
-  ADD PRIMARY KEY (`user_action_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -440,25 +310,25 @@ ALTER TABLE `user_actions`
 -- AUTO_INCREMENT for table `actions`
 --
 ALTER TABLE `actions`
-  MODIFY `action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `action_files`
 --
 ALTER TABLE `action_files`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `action_responsible`
 --
 ALTER TABLE `action_responsible`
-  MODIFY `a_responsible_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=260;
+  MODIFY `a_responsible_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `action_updates`
 --
 ALTER TABLE `action_updates`
-  MODIFY `a_update_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `a_update_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -467,46 +337,22 @@ ALTER TABLE `departments`
   MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `meeting`
+-- AUTO_INCREMENT for table `meetings`
 --
-ALTER TABLE `meeting`
-  MODIFY `meeting_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `meetings`
+  MODIFY `meeting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `meeting_responsible`
+-- AUTO_INCREMENT for table `meeting_attendees`
 --
-ALTER TABLE `meeting_responsible`
-  MODIFY `meeting_responsible_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `notpermitted`
---
-ALTER TABLE `notpermitted`
-  MODIFY `perm_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `projects`
---
-ALTER TABLE `projects`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `project_phase`
---
-ALTER TABLE `project_phase`
-  MODIFY `phase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+ALTER TABLE `meeting_attendees`
+  MODIFY `meeting_attendee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing user_id of each user, unique index', AUTO_INCREMENT=153;
-
---
--- AUTO_INCREMENT for table `user_actions`
---
-ALTER TABLE `user_actions`
-  MODIFY `user_action_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

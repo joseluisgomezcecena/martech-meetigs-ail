@@ -13,7 +13,7 @@
 
 
 <div  class="d-sm-flex align-items-center justify-content-between mb-4">
-    <a href="index.php?page=meeting_list" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-eye fa-sm text-white-50"></i> View All Projects</a>
+    <a href="index.php?page=meeting_list" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-eye fa-sm text-white-50"></i> View All Meetings</a>
 </div>
   
 

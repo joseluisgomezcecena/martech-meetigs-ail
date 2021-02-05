@@ -1,7 +1,7 @@
 <h1 class="h3 mb-4 text-gray-800">Meeting List</h1>
 
 <div style="margin-bottom:15px;">
-    <a  href="index.php?page=meeting_add" id="add-newuser" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ><i class="fas fa-plus fa-sm text-white-50"></i>&nbsp;&nbsp;Add Project</a>
+    <a  href="index.php?page=meeting_add" id="add-newuser" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ><i class="fas fa-plus fa-sm text-white-50"></i>&nbsp;&nbsp;Add Meeting</a>
     <!--    
     <a  href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;&nbsp;Generate Report</a>
     -->

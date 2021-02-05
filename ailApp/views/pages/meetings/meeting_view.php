@@ -13,34 +13,40 @@ $stmt->close();
 
 
 //check if user can see this
-/*
+
 if($_SESSION['quatroapp_user_level'] == 0)
 {
+    $query_check = "SELECT * FROM meetings 
+    LEFT JOIN departments ON meetings.meeting_department_id = departments.department_id 
+    LEFT JOIN users  ON meetings.meeting_user_id = users.user_id
+    LEFT JOIN meeting_attendees ON meeting_attendees.m_a_meeting_id = meetings.meeting_id 
+    WHERE
+    meeting_attendees.meeting_user_id = {$_SESSION['quatroapp_user_id']} AND meeting_id = {$_GET['meeting_id']} ";
+    $run_check = mysqli_query($connection, $query_check);
+    if(mysqli_num_rows($run_check) == 0)
+    {
+        die("<br>You dont have permission to access this meeting, or there are no actions for this meeting add actions first <a href='index.php'>Go Back</a>");
+    }
+
+    /*
     $query = "SELECT * FROM actions 
-    LEFT JOIN meetings ON actions.action_project_id = projects.project_id 
-    LEFT JOIN project_phase ON actions.action_phase = project_phase.phase_id 
+    LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id 
     LEFT JOIN departments ON actions.action_department = departments.department_id 
     LEFT JOIN action_responsible ON action_responsible.a_action_id = actions.action_id 
     WHERE 
-    (projects.project_id = {$row['meeting_id']} AND action_responsible.a_responsible_user = {$_SESSION['quatroapp_user_id']}) 
-    OR (projects.project_id = {$row['meeting_id']} AND projects.project_owner = {$_SESSION['quatroapp_user_id']}) 
+    (meetings.meeting_id = {$row['meeting_id']} AND action_responsible.a_responsible_user = {$_SESSION['quatroapp_user_id']}) 
+    OR (meetings.meeting_id = {$row['meeting_id']} AND meetings.meeting_owner = {$_SESSION['quatroapp_user_id']}) 
     ORDER BY actions.action_promise_date";
     
     $run_check = mysqli_query($connection, $query);
     if(mysqli_num_rows($run_check) == 0)
     {
-        //save in db people trying to access/hack data
-        $query_perm = "INSERT INTO notpermitted (perm_user_id, p_id) VALUES ('{$_SESSION['quatroapp_user_id']}', '{$row['project_id']}')";
-        $run_perm = mysqli_query($connection, $query_perm);
-        if(!$run_perm)
-        {
-            echo $query_perm;
-        }
-        die("<br>You dont have permission to access this project, or there are no actions for this project add actions first <a href='index.php'>Go Back</a>");
+      
+        die("<br>You dont have permission to access this meeting, or there are no actions for this meeting add actions first <a href='index.php'>Go Back</a>");
 
     }
+    */
 }
-*/
 
 
 ?>
@@ -81,34 +87,12 @@ if($_SESSION['quatroapp_user_level'] == 0)
                 </thead>
                 <tbody>
                     <?php 
-                    if($_SESSION['quatroapp_user_level'] >= 1)
-                    {
-                        $query = "SELECT * FROM actions
-                        LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id
-                        LEFT JOIN departments ON actions.action_department = departments.department_id 
-                        WHERE meetings.meeting_id = {$_GET['meeting_id']} ORDER BY actions.action_promise_date";
-                    }
-                    else
-                    {
-                        $query = "SELECT * FROM actions
-                        LEFT JOIN projects ON actions.action_project_id = projects.project_id
-                        LEFT JOIN project_phase ON actions.action_phase = project_phase.phase_id 
-                        LEFT JOIN departments ON actions.action_department = departments.department_id 
-                        WHERE projects.project_id = {$_GET['project_id']} ORDER BY actions.action_promise_date";
-
-                        /*
-                        $query = "SELECT * FROM actions 
-                        LEFT JOIN projects ON actions.action_project_id = projects.project_id 
-                        LEFT JOIN project_phase ON actions.action_phase = project_phase.phase_id 
-                        LEFT JOIN departments ON actions.action_department = departments.department_id 
-                        LEFT JOIN action_responsible ON action_responsible.a_action_id = actions.action_id 
-                        WHERE projects.project_id = {$_GET['project_id']} 
-                        AND action_responsible.a_responsible_user = {$_SESSION['quatroapp_user_id']} 
-                        ORDER BY actions.action_promise_date";
-                        */
-                    }
-                    
-                    
+                   
+                   
+                    $query = "SELECT * FROM actions
+                    LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id
+                    LEFT JOIN departments ON actions.action_department = departments.department_id 
+                    WHERE meetings.meeting_id = {$_GET['meeting_id']} ORDER BY actions.action_promise_date";    
                     
                     $result = mysqli_query($connection, $query);
                     while($row = mysqli_fetch_array($result)):

@@ -15,19 +15,40 @@ require_once "../settings/db.php";
 function notificationData()
 {
     global $connection;
+    $CC = array();
+    $email = "noreply@martechsender.com";
     $today = date("Y-m-d");
 
-    $query = "SELECT * FROM actions  
-    LEFT JOIN action_responsible ON actions.action_id = action_responsible.a_action_id 
-    LEFT JOIN users ON a_action_responsible.a_responsible_user = users.user_id 
+
+    $query = "SELECT * FROM actions
+    LEFT JOIN meetings ON meetings.meeting_id = actions.action_meeting_id  
     WHERE actions.action_promise_date < '$today' AND actions.action_complete = 0
     ";
 
     $result = mysqli_query($connection, $query);
+    if(!$result) die("1st Query Error:".$query);
+    
 
     while($row = mysqli_fetch_array($result))
     {
-        echo $row['user_name']."<br>";
+
+        $title = "Late Action:".$row['action_name']." ".$row['meeting_name'];
+        $msg = "The Folling action is past due: ".$row['action_name']."<br>This action comes from the following meeting".$row['meeting_name']."<br>Please update this actions status";
+
+
+        $responsible = "SELECT * FROM action_responsible 
+        LEFT JOIN users ON action_responsible.a_responsible_user = users.user_id 
+        WHERE a_action_id = {$row['action_id']}";
+
+        $result_responsible = mysqli_query($connection, $responsible);
+        if(!$result_responsible) die("2nd Query Error:".$responsible);
+
+        while($row_responsible = mysqli_fetch_array($result_responsible))
+        {
+            $CC[] = $row_responsible['user_email'];
+        }
+
+        sendEmail($email, $title, $msg, [], $CC);
     }
 }
 

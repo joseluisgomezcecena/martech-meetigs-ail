@@ -28,7 +28,7 @@
 <div class="col-lg-3">
         <div class="card shadow mb-4 ">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary"><?php echo $row['meeting_name'] ?>&nbsp;&nbsp;<i data-toggle='tooltip' data-placement='right' title="You this meetings organizer: <?php echo $row['meeting_name'] ?>" style="color: #000000;" class="fa fa-question-circle"></i></h6>
+                <h6 class="m-0 font-weight-bold text-primary"><?php echo $row['meeting_name'] ?>&nbsp;&nbsp;<i data-toggle='tooltip' data-placement='right' title="This meeting was organized by you: <?php echo $row['meeting_name'] ?>" style="color: #000000;" class="fa fa-question-circle"></i></h6>
             </div>
             
             <div class="card-body">

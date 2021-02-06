@@ -179,7 +179,7 @@
                                 $bg = "bg-primary";
                                 $text = "Completed";
                             }
-                            elseif($row['action_complete'] == 0 && $row['action_promise_date'] < date("Y-m-d"))
+                            elseif($row['action_complete'] == 0 && $row['action_promise_date'] <= date("Y-m-d"))
                             {
                                 $bg = "bg-danger";
                                 $text = "Late";

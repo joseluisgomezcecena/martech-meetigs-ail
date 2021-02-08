@@ -17,6 +17,7 @@ function notificationData()
     global $connection;
     $CC = array();
     $email = "ailsender@martechsender.com";
+    //$email = "jgomez@martechmedical.com";
     $today = date("Y-m-d");
 
 
@@ -33,7 +34,7 @@ function notificationData()
     {
 
         $title = "Late Action:".$row['action_name']." ".$row['meeting_name'];
-        $msg = "The Folling action is past due: ".$row['action_name']."<br>This action comes from the following meeting".$row['meeting_name']."<br>Please update this actions status";
+        $msg = "The Following action is past due: <b>".$row['action_name']."</b><br>This action comes from the following meeting: <b>".$row['meeting_name']."</b><br>Please update these actions.";
 
 
         echo $responsible = "SELECT * FROM action_responsible 

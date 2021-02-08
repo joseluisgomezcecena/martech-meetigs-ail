@@ -109,6 +109,10 @@ switch($page)
         include("pages/reports/report.php");
     break;
 
+    case "meeting_report":
+        include("pages/reports/meeting_report.php");
+    break;
+
     //import data
     case "andon_sites":
         include("pages/site/site_list.php");

@@ -16,7 +16,7 @@ function notificationData()
 {
     global $connection;
     $CC = array();
-    $email = "noreply@martechsender.com";
+    $email = "ailsender@martechsender.com";
     $today = date("Y-m-d");
 
 
@@ -73,13 +73,13 @@ function sendEmail($email, $title, $message, $attach = array(), $CC = array())
         $mail->isSMTP();                                                      // Set mailer to use SMTP
         $mail->Host       = 'mail.martechsender.com;mail.martechsender.com';  // Specify main and backup SMTP servers
         $mail->SMTPAuth   = true;                                             // Enable SMTP authentication
-        $mail->Username   = 'noreply@martechsender.com';                      // SMTP username
+        $mail->Username   = 'ailsender@martechsender.com';                      // SMTP username
         $mail->Password   = 'martechmedical';                                 // SMTP password
         $mail->SMTPSecure = 'tls';                                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port       = 587;                                              
 
         //Recipients
-        $mail->setFrom('noreply@martechsender.com', 'Electronic purchase system');
+        $mail->setFrom('ailsender@martechsender.com', 'AIL');
         $mail->addAddress($email);                                            // Add a recipient
         //$mail->addCC($email);
 

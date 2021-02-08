@@ -44,14 +44,13 @@ $stmt->close();
                 <thead>
                 <tr>
                     <th>Action</th>
-                    <th>Description</th>
+                    <th>Problem / Description</th>
                     <th>Department</th>
-                    <th>Team</th>
-                    <th>Register Date</th>
-                    <th>Promise Date</th>
+                    <th>Responsible</th>
+                    <th>Meeting Date</th>
+                    <th>ECD</th>
                     <th>Status</th>
-                    <th>Complete</th>
-                    <th>Updates</th>
+                    <th>Comment / Updates</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -59,16 +58,15 @@ $stmt->close();
 
                     
                     $query = "SELECT * FROM actions
-                    LEFT JOIN meetings ON actions.action_project_id = meetings.project_id
-                    LEFT JOIN project_phase ON actions.action_phase = project_phase.phase_id 
+                    LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id
                     LEFT JOIN departments ON actions.action_department = departments.department_id 
-                    WHERE meetings.project_id = {$_GET['project_id']} ORDER BY actions.action_promise_date";
+                    WHERE meetings.meeting_id = {$_GET['meeting_id']} ORDER BY actions.action_promise_date";
                 
                     $result = mysqli_query($connection, $query);
                     while($row = mysqli_fetch_array($result)):
                     ?>
                         <tr>
-                            <td><?php echo $row['phase_name'];  ?></td>
+
                             <td><?php echo $row['action_name'];  ?></td>
                             <td style="text-align: justify;"><?php echo $row['action_description'];  ?></td>
                             <td><?php echo $row['department_name'];  ?></td>
@@ -83,25 +81,25 @@ $stmt->close();
                                     <?php echo $row2['user_name'] ?>
                                 <?php endwhile; ?>
                             </td>
-                            <td><?php echo date('m-d-Y', strtotime($row['action_start_date']));  ?></td>
+                            <td><?php echo date('m-d-Y', strtotime($row_data['meeting_date']));  ?></td>
                             <td><?php echo date('m-d-Y', strtotime($row['action_promise_date']));  ?></td>
                             <td>
                                 <?php
-                                    if($row['action_status'] == 0 && $row['action_promise_date'] <= date("Y-m-d"))
+                                    if($row['action_complete'] == 0 && $row['action_promise_date'] <= date("Y-m-d"))
                                     {
                                         echo "Late";
                                     }   
-                                    elseif($row['action_status'] == 0 && $row['action_promise_date'] > date("Y-m-d"))
+                                    elseif($row['action_complete'] == 0 && $row['action_promise_date'] > date("Y-m-d"))
                                     {
                                         echo "On time";
                                     }
+                                    elseif($row['action_complete'] == 1)
+                                    {
+                                        echo "Complete";
+                                    }
                                 ?>
                             </td>
-                            <td>
-                            <?php 
-                                echo $percentage = $row['action_percent'];
-                            ?>
-                            </td>
+                            
                            
                             <td>
                             <?php 
@@ -146,7 +144,7 @@ $stmt->close();
 <div class="col-lg-8">
 <div class="card shadow mb-4 ">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Project Files</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Meeting Files</h6>
     </div>
         <div class="card-body">
 
@@ -164,8 +162,8 @@ $stmt->close();
                     <?php 
                     $query = "SELECT * FROM action_files 
                     LEFT JOIN actions ON action_files.file_action_id = actions.action_id 
-                    LEFT JOIN meetings ON actions.action_project_id = meetings.project_id 
-                    WHERE project_id = {$_GET['project_id']}";
+                    LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id 
+                    WHERE meeting_id = {$_GET['meeting_id']}";
 
                     $result = mysqli_query($connection, $query);
                     while($row = mysqli_fetch_array($result)):

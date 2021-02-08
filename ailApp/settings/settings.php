@@ -21,7 +21,7 @@ else
 
 
 //datatables con botones
-if($page == "andon_sites" || $page == "trained_supervisor" || $page == "project_list" || $page == "project_view" || $page == "view_update" || $page == "report")
+if($page == "andon_sites" || $page == "trained_supervisor" || $page == "project_list" || $page == "project_view" || $page == "view_update" || $page == "report" || $page == "meeting_report")
 {
     $datatablesop = 2;
 }

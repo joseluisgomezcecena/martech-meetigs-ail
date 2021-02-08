@@ -28,7 +28,8 @@
                     <th style="text-align: center;">ECD</th>
                     <th style="text-align: center;">Status</th>
                     <th style="text-align: center;">Comment</th>
-                    <th style="text-align: center;">Export</th>
+                    <th style="text-align: center;">Export Meeting</th>
+                    <th style="text-align: center;">Export Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -118,10 +119,10 @@
                                 ?>
                             </td>
                             <td>
-                                <!--    
-                                <a href='index.php?page=action_add&project_id=<?php echo $row['project_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Add a task to this project' style='font-size: 20px; color:#b5b5b5' class='fas fa-folder-plus options'></i></a>
-                                -->
-                                <a href='index.php?page=report&meeting_id=<?php echo $row['meeting_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Generate Report' style='font-size: 28px; color:#03913a' class='far fa-file-excel options2'></i></a>
+                                <a href='index.php?page=meeting_report&meeting_id=<?php echo $row['meeting_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Generate Meeting Report' style='font-size: 28px; color:#03913a' class='far fa-file-excel options2'></i></a>
+                            </td>
+                            <td>
+                                <a href='index.php?page=report&meeting_id=<?php echo $row['meeting_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Generate Action Report' style='font-size: 28px; color:#03913a' class='far fa-file-excel options2'></i></a>
                             </td>
                         </tr>
                     <?php endwhile; ?>

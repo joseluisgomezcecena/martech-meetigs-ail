@@ -1,0 +1,7 @@
+C:\Users\josel\source\repos\ailTrigger\ailTrigger\bin\Debug\ailTrigger.exe.config
+C:\Users\josel\source\repos\ailTrigger\ailTrigger\bin\Debug\ailTrigger.exe
+C:\Users\josel\source\repos\ailTrigger\ailTrigger\bin\Debug\ailTrigger.pdb
+C:\Users\josel\source\repos\ailTrigger\ailTrigger\obj\Debug\ailTrigger.csprojAssemblyReference.cache
+C:\Users\josel\source\repos\ailTrigger\ailTrigger\obj\Debug\ailTrigger.csproj.CoreCompileInputs.cache
+C:\Users\josel\source\repos\ailTrigger\ailTrigger\obj\Debug\ailTrigger.exe
+C:\Users\josel\source\repos\ailTrigger\ailTrigger\obj\Debug\ailTrigger.pdb

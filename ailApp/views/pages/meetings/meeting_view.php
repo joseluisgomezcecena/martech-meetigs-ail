@@ -89,11 +89,22 @@ if($_SESSION['quatroapp_user_level'] == 0)
                 <tbody>
                     <?php 
                    
-                   
-                    $query = "SELECT * FROM actions
-                    LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id
-                    LEFT JOIN departments ON actions.action_department = departments.department_id 
-                    WHERE meetings.meeting_id = {$_GET['meeting_id']} ORDER BY actions.action_promise_date";    
+                    if($_SESSION['quatroapp_user_level'] == 0)
+                    {   //solo ver acciones en las que participa
+                        $query = "SELECT * FROM actions
+                        LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id
+                        LEFT JOIN action_responsible ON actions.action_id = action_responsible.a_action_id
+                        LEFT JOIN users ON  action_responsible.a_responsible_user = users.user_id 
+                        LEFT JOIN departments ON actions.action_department = departments.department_id 
+                        WHERE meetings.meeting_id = {$_GET['meeting_id']} AND action_responsible.a_responsible_user = {$_SESSION['quatroapp_user_id']} ORDER BY actions.action_promise_date";    
+                    }
+                    else
+                    {
+                        $query = "SELECT * FROM actions
+                        LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id
+                        LEFT JOIN departments ON actions.action_department = departments.department_id 
+                        WHERE meetings.meeting_id = {$_GET['meeting_id']} ORDER BY actions.action_promise_date";        
+                    }
                     
                     $result = mysqli_query($connection, $query);
                     while($row = mysqli_fetch_array($result)):

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2021 at 07:11 PM
+-- Generation Time: Feb 09, 2021 at 11:24 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -44,8 +44,8 @@ CREATE TABLE `actions` (
 --
 
 INSERT INTO `actions` (`action_id`, `action_meeting_id`, `action_name`, `action_description`, `action_department`, `action_promise_date`, `action_end_date`, `action_status`, `action_complete`) VALUES
-(3, 5, 'Re-escribir aplicación AIL', 'La aplicación AIL no tiene los campos requeridos', 1, '2021-02-09', '0000-00-00', 0, 0),
-(4, 5, 'Review de aplicacion', 'Aprobar la aplicacion para su uso ', 2, '2021-02-10', '0000-00-00', 0, 0),
+(3, 5, 'Re-escribir aplicación AIL', 'La aplicación AIL no tiene los campos requeridos', 1, '2021-02-11', '2021-02-09', 0, 1),
+(4, 5, 'Review de aplicacion', 'Aprobar la aplicacion para su uso ', 2, '2021-02-15', '2021-02-08', 0, 1),
 (5, 6, 'TMP module rewrite', 'Rewrite tpm module so system does not crash when too many requests are made', 1, '2021-02-19', '0000-00-00', 0, 0),
 (6, 7, 'Confirm email reception', 'Testing of email sending functions, all recipients must confirm they received an email from the AIL program on 2/5/20201 at 3:10pm', 1, '2021-02-05', '0000-00-00', 0, 0),
 (7, 8, 'Create new account on server', 'The previous account was suspended because it was detected as spam', 1, '2021-02-11', '0000-00-00', 0, 0),
@@ -94,11 +94,6 @@ CREATE TABLE `action_responsible` (
 --
 
 INSERT INTO `action_responsible` (`a_responsible_id`, `a_action_id`, `a_responsible_user`, `a_responsible_main`, `a_responsible_added_by`, `a_responsible_date`) VALUES
-(8, 3, 21, 0, 21, '2021-02-04'),
-(9, 4, 21, 0, 21, '2021-02-04'),
-(10, 4, 135, 0, 21, '2021-02-04'),
-(11, 4, 143, 0, 21, '2021-02-04'),
-(12, 4, 151, 0, 21, '2021-02-04'),
 (14, 5, 21, 0, 21, '2021-02-04'),
 (15, 6, 21, 0, 21, '2021-02-05'),
 (16, 6, 143, 0, 21, '2021-02-05'),
@@ -106,7 +101,12 @@ INSERT INTO `action_responsible` (`a_responsible_id`, `a_action_id`, `a_responsi
 (18, 7, 21, 0, 21, '2021-02-08'),
 (19, 8, 21, 0, 21, '2021-02-08'),
 (20, 8, 135, 0, 21, '2021-02-08'),
-(21, 8, 143, 0, 21, '2021-02-08');
+(21, 8, 143, 0, 21, '2021-02-08'),
+(23, 3, 21, 0, 21, '2021-02-08'),
+(36, 4, 21, 0, 21, '2021-02-08'),
+(37, 4, 135, 0, 21, '2021-02-08'),
+(38, 4, 143, 0, 21, '2021-02-08'),
+(39, 4, 151, 0, 21, '2021-02-08');
 
 -- --------------------------------------------------------
 
@@ -131,7 +131,11 @@ INSERT INTO `action_updates` (`a_update_id`, `a_update_action_id`, `a_update_des
 (4, 5, 'ACTION ON GOING - 2021-02-04: Cleaned up server log files, this will help the server be in an optimal condition for testing/development', 21, '2021-02-04', 1),
 (5, 6, 'ACTION ON GOING - 2021-02-05: Email Sender is working correctly but server blocked our smtp server account, sent a ticket to it to unblock and waiting for confirmation', 21, '2021-02-05', 1),
 (6, 6, 'ACTION ON GOING - 2021-02-05: Anabel and Javier Contacted IT, they are checking the problem. All testing is halted until smtp blocking is resolved', 21, '2021-02-05', 1),
-(7, 6, 'ACTION ON GOING - 2021-02-05: Testing is being done', 21, '2021-02-05', 1);
+(7, 6, 'ACTION ON GOING - 2021-02-05: Testing is being done', 21, '2021-02-05', 1),
+(8, 3, 'ACTION COMPLETED! - 2021-02-08: Completed rewriting app', 21, '2021-02-08', 1),
+(9, 4, 'ACTION COMPLETED! - 2021-02-08: Completed review, the app was accepted', 21, '2021-02-08', 1),
+(10, 3, 'ACTION ON GOING - 2021-02-08: changed to on going to make changes requested', 21, '2021-02-08', 1),
+(11, 3, 'ACTION COMPLETED! - 2021-02-09: this action has been completed', 21, '2021-02-09', 1);
 
 -- --------------------------------------------------------
 
@@ -180,6 +184,26 @@ INSERT INTO `departments` (`department_id`, `department_name`, `department_activ
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ecd_changes`
+--
+
+CREATE TABLE `ecd_changes` (
+  `ecd_id` int(11) NOT NULL,
+  `ecd_action_id` int(11) NOT NULL,
+  `ecd_date` date NOT NULL,
+  `ecd_user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Dumping data for table `ecd_changes`
+--
+
+INSERT INTO `ecd_changes` (`ecd_id`, `ecd_action_id`, `ecd_date`, `ecd_user_id`) VALUES
+(2, 4, '2021-02-14', 21);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `meetings`
 --
 
@@ -187,6 +211,7 @@ CREATE TABLE `meetings` (
   `meeting_id` int(11) NOT NULL,
   `meeting_department_id` int(11) NOT NULL,
   `meeting_name` varchar(255) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `meeting_description` text COLLATE utf8mb4_spanish2_ci NOT NULL,
   `meeting_date` date NOT NULL,
   `meeting_active` int(1) NOT NULL DEFAULT 1,
   `meeting_complete` int(1) NOT NULL,
@@ -197,11 +222,11 @@ CREATE TABLE `meetings` (
 -- Dumping data for table `meetings`
 --
 
-INSERT INTO `meetings` (`meeting_id`, `meeting_department_id`, `meeting_name`, `meeting_date`, `meeting_active`, `meeting_complete`, `meeting_user_id`) VALUES
-(5, 2, 'Aplicacion AIL', '2021-01-20', 1, 0, 151),
-(6, 1, 'Andon System Changes', '2021-02-04', 1, 0, 143),
-(7, 1, 'Test AIL Email', '2021-02-05', 1, 0, 21),
-(8, 1, 'Configure new Email', '2021-02-08', 1, 0, 21);
+INSERT INTO `meetings` (`meeting_id`, `meeting_department_id`, `meeting_name`, `meeting_description`, `meeting_date`, `meeting_active`, `meeting_complete`, `meeting_user_id`) VALUES
+(5, 2, 'Aplicacion AIL', '', '2021-01-20', 1, 0, 151),
+(6, 1, 'Andon System Changes', '', '2021-02-04', 1, 0, 143),
+(7, 1, 'Test AIL Email', '', '2021-02-05', 1, 0, 21),
+(8, 1, 'Configure new Email', '', '2021-02-08', 1, 0, 21);
 
 -- --------------------------------------------------------
 
@@ -276,7 +301,23 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_password_hash`, `user_email`,
 (147, 'jruiz1', '$2y$10$YRAfe4xwql.zv8BBKjRsF.y/dWAa6ElnzxZl.gNCdFQcu59CafjJe', 'jruiz1@martechmedical.com', 'Julio', 'Ruiz', '495215', 1, '2021-01-11 16:46:32', '2021-01-12 00:46:32', '', '+52', 0, 'uploads/user_img/noimage.png', 0, 0, 1),
 (151, 'cobregon', '$2y$10$V7s2qXvNnAa6Wpj8/URoCOpa89OV4aCfygivHtZ6.cnG2t7V9yh1a', 'cobregon@martechmedical.com', 'Carolina', 'Obregon', '12235', 2, '2021-01-15 17:31:28', '2021-01-18 23:25:47', '', '+52', 1, 'uploads/user_img/noimage.png', 0, 0, 1),
 (152, 'fnava', '$2y$10$GQ7GsOrBj1kO8c9aW98p7.s12MY05NQro3Ib3tuNoCdDT..eDPwNu', 'fnava@martechmedical.com', 'Edmundo', 'Nava', '1000', 2, '2021-01-18 11:11:41', '2021-01-18 23:18:39', '', '+52', 1, 'uploads/user_img/noimage.png', 0, 0, 1),
-(153, 'jruiz', '$2y$10$QQKjFQ0HB1.kSpGsxOFUeuz3bv/6JMYXS1Zzo3wNPREl2WvQIh/Pi', 'jruiz@martechmedical.com', 'Jesus', 'Ruiz', '1', 2, '2021-02-04 17:57:54', '2021-02-05 01:57:54', '', '+52', 1, 'uploads/user_img/noimage.png', 0, 0, 1);
+(153, 'jruiz', '$2y$10$QQKjFQ0HB1.kSpGsxOFUeuz3bv/6JMYXS1Zzo3wNPREl2WvQIh/Pi', 'jruiz@martechmedical.com', 'Jesus', 'Ruiz', '1', 2, '2021-02-04 17:57:54', '2021-02-05 01:57:54', '', '+52', 1, 'uploads/user_img/noimage.png', 0, 0, 1),
+(154, 'rgodoy', '$2y$10$Pp4OmeAWMYlRuSDCe/SfIuLVnOSj3suZciAmH2zDoh3a1EF16JJiO', 'rgodoy@martechmedical.com', 'Ruben', 'Godoy', '5555', 2, '2021-02-08 16:43:05', '2021-02-09 00:43:05', '', '', 1, 'uploads/user_img/noimage.png', 0, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_actions`
+--
+
+CREATE TABLE `user_actions` (
+  `user_action_id` int(11) NOT NULL,
+  `u_a_description` varchar(255) COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `u_a_meeting_id` int(11) NOT NULL,
+  `u_a_action_id` int(11) NOT NULL,
+  `u_a_date_time` datetime NOT NULL,
+  `u_a_user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Indexes for dumped tables
@@ -319,6 +360,12 @@ ALTER TABLE `departments`
   ADD PRIMARY KEY (`department_id`);
 
 --
+-- Indexes for table `ecd_changes`
+--
+ALTER TABLE `ecd_changes`
+  ADD PRIMARY KEY (`ecd_id`);
+
+--
 -- Indexes for table `meetings`
 --
 ALTER TABLE `meetings`
@@ -337,6 +384,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `user_name` (`user_name`),
   ADD UNIQUE KEY `user_email` (`user_email`);
+
+--
+-- Indexes for table `user_actions`
+--
+ALTER TABLE `user_actions`
+  ADD PRIMARY KEY (`user_action_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -358,13 +411,13 @@ ALTER TABLE `action_files`
 -- AUTO_INCREMENT for table `action_responsible`
 --
 ALTER TABLE `action_responsible`
-  MODIFY `a_responsible_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `a_responsible_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `action_updates`
 --
 ALTER TABLE `action_updates`
-  MODIFY `a_update_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `a_update_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `config`
@@ -377,6 +430,12 @@ ALTER TABLE `config`
 --
 ALTER TABLE `departments`
   MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `ecd_changes`
+--
+ALTER TABLE `ecd_changes`
+  MODIFY `ecd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `meetings`
@@ -394,7 +453,13 @@ ALTER TABLE `meeting_attendees`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing user_id of each user, unique index', AUTO_INCREMENT=154;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'auto incrementing user_id of each user, unique index', AUTO_INCREMENT=155;
+
+--
+-- AUTO_INCREMENT for table `user_actions`
+--
+ALTER TABLE `user_actions`
+  MODIFY `user_action_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

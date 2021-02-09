@@ -148,7 +148,12 @@ class ActionUpdate
                 if ($query_new_user_insert) 
                 {
                     if($complete == 1)
-                    { 
+                    {
+                        $user_action = "INSERT INTO user_actions (u_a_description, u_a_action_id, u_a_date_time, u_a_user_id) 
+                        VALUES ('Marked Action As Complete', $action_id, '$today', {$_SESSION['quatroapp_user_id']} )";
+                        $insert_user_action = $this->db_connection->query($user_action);
+
+
                         $sql = "UPDATE actions SET action_complete = $complete,  action_complete = 1, action_end_date = '$action_end_date'  WHERE action_id = $action_id";
                     }
                     else

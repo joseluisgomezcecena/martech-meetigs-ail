@@ -403,7 +403,7 @@ class Meeting
                 $sql = "UPDATE meetings SET  meeting_active = 0 WHERE meeting_id = $meeting_id ";
                 $query_new_user_insert = $this->db_connection->query($sql);
 
-                $user_action = "INSERT INTO user_actions (u_a_description, u_a_meeting, u_a_date_time, u_a_user_id) 
+                $user_action = "INSERT INTO user_actions (u_a_description, u_a_meeting_id, u_a_date_time, u_a_user_id) 
                 VALUES ('Deleted Meeting', $meeting_id, '$today', {$_SESSION['quatroapp_user_id']} )";
                 $insert_user_action = $this->db_connection->query($user_action);
 
@@ -481,7 +481,7 @@ class Meeting
         
                         if ($query_new_user_insert) 
                         {
-                            $user_action = "INSERT INTO user_actions (u_a_description, u_a_meeting, u_a_date_time, u_a_user_id) 
+                            $user_action = "INSERT INTO user_actions (u_a_description, u_a_meeting_id, u_a_date_time, u_a_user_id) 
                             VALUES ('Marked As Completed Meeting', $meeting_id, '$today', {$_SESSION['quatroapp_user_id']} )";
                             $insert_user_action = $this->db_connection->query($user_action);
 

@@ -1,16 +1,42 @@
 <?php
+/*
 $stmt = $connection->prepare(
     "SELECT * FROM actions 
     LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id 
     LEFT JOIN departments ON actions.action_department = departments.department_id
     WHERE action_id = ?"
 );
-$stmt->bind_param("i", $_GET['action_id']);
+*/
+if($_SESSION['quatroapp_user_level'] == 0)
+{
+    $stmt = $connection->prepare(
+        "SELECT * FROM actions 
+        LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id 
+        LEFT JOIN action_responsible ON actions.action_id = action_responsible.a_action_id 
+        LEFT JOIN users ON  action_responsible.a_responsible_user = users.user_id 
+        LEFT JOIN departments ON actions.action_department = departments.department_id
+        WHERE action_id = ? AND action_responsible.a_responsible_user = ?"
+    );
+    $stmt->bind_param("ii", $_GET['action_id'], $_SESSION['quatroapp_user_id']);
+}
+else
+{
+    $stmt = $connection->prepare(
+        "SELECT * FROM actions 
+        LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id 
+        LEFT JOIN departments ON actions.action_department = departments.department_id
+        WHERE action_id = ?"
+    );
+    $stmt->bind_param("i", $_GET['action_id']);
+}
+
+
+//$stmt->bind_param("i", $_GET['action_id']);
 $stmt->execute();
 
 $result = $stmt->get_result();
 if($result->num_rows === 0) 
-    exit('No rows');
+    exit("This user doesn't have access to this actions/meeting data. <a href='index.php'>Go back</a>");
 
 $row = $result->fetch_array();
 $stmt->close();

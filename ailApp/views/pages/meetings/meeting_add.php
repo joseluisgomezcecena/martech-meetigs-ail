@@ -77,6 +77,11 @@ if (isset($meeting)) {
                         <input type="text" name="meeting_name" id="" class="form-control" required>
                     </div>
 
+                    <div class="form-group">
+                        <label>Meeting Description</label>
+                        <textarea name="meeting_description"  class="form-control" rows="5" required></textarea>
+                    </div>
+
                     <div class="form-group ">
                           <label>Department</label>
                           <select  name="meeting_department" id="" class="form-control">

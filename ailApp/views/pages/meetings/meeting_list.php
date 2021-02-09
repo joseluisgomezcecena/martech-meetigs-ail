@@ -14,7 +14,7 @@
     </div>
         <div class="card-body">
             <div style="margin-top:-20px;" class="table-responsive">
-            <table  style="font-size: 14px; vertical-align:middle; " class="table  order-column " id="dataTableExcel" width="100%" cellspacing="0">
+            <table  style="font-size: 14px; vertical-align:middle; " class="table  order-column " id="dataTable" width="100%" cellspacing="0">
                 <thead style="text-align:center;">
                 <tr>
                     <th>ID</th>
@@ -23,8 +23,8 @@
                     <th>Department</th>
                     <th>Organizer</th>
                     <th>Participants</th>
-                    <th>Actions</th>
-                    <th>Complete</th>
+                    <th>Options</th>
+                    <th>Mark As Complete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -160,12 +160,12 @@
                                 ?>
                             </td>
                             -->
-                            <td>
+                            <td style="text-align: center;">
                                 <a href='index.php?page=meeting_view&meeting_id=<?php echo $row['meeting_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='View Meeting' style='font-size: 20px; color:#b5b5b5' class='far fa-eye options'></i></a>
                                 <a href='index.php?page=meeting_edit&meeting_id=<?php echo $row['meeting_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Edit Meeting' style='font-size: 20px; color:#b5b5b5' class='far fa-edit options'></i></a>
                                 <a href='index.php?page=meeting_delete&meeting_id=<?php echo $row['meeting_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Delete Meeting' style='font-size: 20px; color:#b5b5b5' class='far fa-trash-alt options'></i></a>
                             </td>
-                            <td>
+                            <td style="text-align: center;">
                                 <!--    
                                 <a href='index.php?page=action_add&meeting_id=<?php echo $row['meeting_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Add a task to this project' style='font-size: 20px; color:#b5b5b5' class='fas fa-folder-plus options'></i></a>
                                 -->

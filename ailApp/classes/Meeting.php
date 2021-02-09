@@ -89,7 +89,7 @@ class Meeting
                 $meeting_user_id      = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_user_id'], ENT_QUOTES));
                 $meeting_date         = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_date'], ENT_QUOTES));
                 $meeting_department   = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_department'], ENT_QUOTES));
-                
+                $meeting_description  = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_description'], ENT_QUOTES));
              
                 $meeting_date =  strtotime($meeting_date);
                 $meeting_date = date('Y-m-d', $meeting_date);
@@ -109,8 +109,8 @@ class Meeting
                 } 
                 else 
                 {
-                    $sql = "INSERT INTO meetings (meeting_name, meeting_department_id, meeting_date, meeting_user_id)
-                            VALUES('" . $meeting_name . "', '" . $meeting_department . "', '" . $meeting_date . "', '" . $meeting_user_id . "');";
+                    $sql = "INSERT INTO meetings (meeting_name, meeting_description, meeting_department_id, meeting_date, meeting_user_id)
+                            VALUES('" . $meeting_name . "', '" . $meeting_description . "', '" . $meeting_department . "', '" . $meeting_date . "', '" . $meeting_user_id . "');";
                     $query_new_user_insert = $this->db_connection->query($sql);
 
                     if ($query_new_user_insert) 
@@ -200,7 +200,8 @@ class Meeting
                 $meeting_user_id      = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_user_id'], ENT_QUOTES));
                 $meeting_date         = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_date'], ENT_QUOTES));
                 $meeting_department   = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_department'], ENT_QUOTES));
-                
+                $meeting_description  = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_description'], ENT_QUOTES));
+
              
                 $meeting_date =  strtotime($meeting_date);
                 $meeting_date = date('Y-m-d', $meeting_date);
@@ -220,8 +221,8 @@ class Meeting
                 } 
                 else 
                 {
-                    $sql = "INSERT INTO meetings (meeting_name, meeting_department_id, meeting_date, meeting_user_id)
-                            VALUES('" . $meeting_name . "', '" . $meeting_department . "', '" . $meeting_date . "', '" . $meeting_user_id . "');";
+                    $sql = "INSERT INTO meetings (meeting_name, meeting_description, meeting_department_id, meeting_date, meeting_user_id)
+                            VALUES('" . $meeting_name . "', '" . $meeting_description . "', '" . $meeting_department . "', '" . $meeting_date . "', '" . $meeting_user_id . "');";
                     $query_new_user_insert = $this->db_connection->query($sql);
 
                     if ($query_new_user_insert) 
@@ -313,7 +314,8 @@ class Meeting
                 $meeting_user_id      = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_user_id'], ENT_QUOTES));
                 $meeting_date         = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_date'], ENT_QUOTES));
                 $meeting_department   = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_department'], ENT_QUOTES));
-                
+                $meeting_description  = $this->db_connection->real_escape_string(strip_tags($_POST['meeting_description'], ENT_QUOTES));
+
              
                 $meeting_date =  strtotime($meeting_date);
                 $meeting_date = date('Y-m-d', $meeting_date);
@@ -330,7 +332,7 @@ class Meeting
                 
                 else 
                 {
-                    $sql = "UPDATE meetings SET  meeting_name = '" . $meeting_name . "', meeting_department_id = '" . $meeting_department . "', 
+                    $sql = "UPDATE meetings SET  meeting_name = '" . $meeting_name . "', meeting_description = '" . $meeting_description . "' , meeting_department_id = '" . $meeting_department . "', 
                     meeting_date = '" . $meeting_date . "', meeting_user_id = '" . $meeting_user_id . "' WHERE meeting_id = $meeting_id ";
                     $query_new_user_insert = $this->db_connection->query($sql);
 
@@ -385,6 +387,7 @@ class Meeting
         }
         elseif (is_numeric($_GET['meeting_id'])) 
         {
+            $today = date("Y-m-d H:i:s");
             $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
             if (!$this->db_connection->set_charset("utf8")) 
@@ -399,6 +402,10 @@ class Meeting
             
                 $sql = "UPDATE meetings SET  meeting_active = 0 WHERE meeting_id = $meeting_id ";
                 $query_new_user_insert = $this->db_connection->query($sql);
+
+                $user_action = "INSERT INTO user_actions (u_a_description, u_a_meeting, u_a_date_time, u_a_user_id) 
+                VALUES ('Deleted Meeting', $meeting_id, '$today', {$_SESSION['quatroapp_user_id']} )";
+                $insert_user_action = $this->db_connection->query($user_action);
 
                 if($query_new_user_insert)
                 {
@@ -443,6 +450,7 @@ class Meeting
 
             if (!$this->db_connection->connect_errno) 
             {
+                $today = date("Y-m-d H:i:s");
                 $meeting_id           = $_GET['meeting_id'];
                 
                 $count = 0;
@@ -473,6 +481,11 @@ class Meeting
         
                         if ($query_new_user_insert) 
                         {
+                            $user_action = "INSERT INTO user_actions (u_a_description, u_a_meeting, u_a_date_time, u_a_user_id) 
+                            VALUES ('Marked As Completed Meeting', $meeting_id, '$today', {$_SESSION['quatroapp_user_id']} )";
+                            $insert_user_action = $this->db_connection->query($user_action);
+
+
                             $this->messages[] = "All actions for this meeting have been completed successfuly.";
                         } 
                         else 

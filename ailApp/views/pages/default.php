@@ -115,12 +115,12 @@
                 <tr>
                     <th>ID</th>
                     <th>Action</th>
-                    <th>Project</th>
-                    <th>Team</th>
-                    <th>Promise Date</th>
+                    <th>Meeting</th>
+                    <th>Responsbile</th>
+                    <th>ECD</th>
                     <th>Status</th>
                     <th>Complete</th>
-                    <th>Actions</th>
+                    <th>Options</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -196,7 +196,7 @@
                                 </div>
                             </td>
                             <td>
-                                <a href='index.php?page=view_update&action_id=<?php echo $row['action_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Go to Action Details' style='font-size: 20px; color:#b5b5b5' class='fas fa-paper-plane options'></i></a>
+                                <a href='index.php?page=view_update&action_id=<?php echo $row['action_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Go to Action Details' style='font-size: 20px; color:#b5b5b5' class='fas fa-arrow-right options'></i></a>
                             </td>
                             
                         </tr>

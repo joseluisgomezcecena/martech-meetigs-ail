@@ -7,41 +7,39 @@
     <ul class="navbar-nav bg-dark-s sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+      <a style="background-color: white;" class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         
         <!--<div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>-->
-        <img class="img-fluid" src="views/assets/img/Martechlogo.png">
+        <img style="width:116px;"  src="views/assets/img/martech-light.png">
         <!--
         <div class="sidebar-brand-text mx-3">Lean Suite<sup>v1</sup></div>
         -->
       </a>
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
-
+      <br>
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link text-danger" href="index.php">
-        <i style="font-size: 20px;" class='fas fa-clipboard text-danger'></i>
+        <a class="nav-link" href="index.php">
+        <i style="font-size: 16px;" class='fas fa-home'></i>
 
-          <span>AIL</span></a>
+          <span>AIL HOME</span></a>
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
 
       <!-- Heading 
       <div class="sidebar-heading text-danger">
-       <i style="font-size: 20px;" class='fas fa-clipboard'></i>&nbsp;&nbsp;AIL
+       <i style="font-size: 16px;" class='fas fa-clipboard'></i>&nbsp;&nbsp;AIL
       </div>
       -->
      
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#andonRespond" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="far fa-handshake"></i>
+        <i style="font-size: 16px;" class="far fa-handshake"></i>
         <span>Meetings</span>
         </a>
         <div id="andonRespond" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -57,7 +55,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#andonReports" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-chart-pie"></i>
+        <i style="font-size: 16px;" class="fas fa-chart-pie"></i>
         <span>Reports</span>
         </a>
         <div id="andonReports" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -66,6 +64,9 @@
             <a class="collapse-item" href="index.php?page=report_active_list">Projects And Actions</a>
             <h6 class="collapse-header">Historic Reports:</h6>
             <a class="collapse-item" href="index.php?page=report_historic_list">Projects And Actions</a>
+            <h6 class="collapse-header">User Reports:</h6>
+            <a class="collapse-item" href="index.php?page=report_user_completion">Completion By User</a>
+            <a class="collapse-item" href="index.php?page=report_user_actions">User Actions</a>
           </div>
         </div>
       </li>
@@ -100,7 +101,7 @@
       ?>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#users" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="far fa-user-circle"></i>
+        <i style="font-size: 16px;" class="far fa-user-circle"></i>
         <span>Users</span>
         </a>
         <div id="users" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -122,7 +123,6 @@
      
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) 
       <div class="text-center d-none d-md-inline">

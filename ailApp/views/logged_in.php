@@ -105,6 +105,14 @@ switch($page)
         include("pages/reports/report_historic_list.php");
     break;
 
+    case "report_user_actions":
+        include("pages/reports/report_user_actions.php");
+    break;
+
+    case "report_user_completion":
+        include("pages/reports/report_user_completion.php");
+    break;
+
     case "report":
         include("pages/reports/report.php");
     break;

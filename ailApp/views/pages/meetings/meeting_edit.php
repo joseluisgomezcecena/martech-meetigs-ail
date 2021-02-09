@@ -89,6 +89,11 @@ $stmt->close();
                         <input type="text" name="meeting_name" id="" class="form-control" value="<?php echo $row_data['meeting_name'] ?>" required>
                     </div>
 
+                    <div class="form-group">
+                        <label>Meeting Description</label>
+                        <textarea name="meeting_description"  class="form-control" rows="5" required><?php echo $row_data['meeting_description']; ?></textarea>
+                    </div>
+
                     <div class="form-group ">
                           <label>Department</label>
                           <select  name="meeting_department" id="" class="form-control">

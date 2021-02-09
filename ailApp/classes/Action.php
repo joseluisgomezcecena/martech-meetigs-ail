@@ -262,18 +262,48 @@ class Action
 
                 $sql = "SELECT * FROM actions WHERE action_name = '" . $action_name . "' AND action_id != $action_id;";
                 $query_check_user_name = $this->db_connection->query($sql);
-                
+                $result_row = $query_check_user_name->fetch_object();
+
 
                 if ($query_check_user_name->num_rows == 1) 
                 {
                     $this->errors[] = "Sorry, that action is already registered, choose a different name.";
                 }
+
+                
+                
+
+                /*
                 elseif($today > $action_promise_date)
                 {
                     $this->errors[] = "Dates dont make sense, please chek that your start date is before your end date.";
                 } 
+                */
                 else 
                 {
+                    //inserting past date
+
+                    $sql_previous = "SELECT * FROM actions WHERE action_name = '" . $action_name . "' AND action_id = $action_id;";
+                    $query_check_date = $this->db_connection->query($sql_previous);
+                    $result_row = $query_check_date->fetch_object();
+
+
+                    if($result_row->action_promise_date < $action_promise_date)
+                    {
+                        $new =  $result_row->action_promise_date;
+
+                        $sql_ecd = "INSERT INTO ecd_changes (ecd_action_id, ecd_date, ecd_user_id) 
+                        VALUES 
+                        ($action_id, '$new', {$_SESSION['quatroapp_user_id']})";
+                        $insert_past_date = $this->db_connection->query($sql_ecd);
+                        if(!$insert_past_date)
+                        {
+                            echo $sql_ecd;
+                        }
+
+                    }
+                    
+
                     $sql = "UPDATE actions SET  action_name = '" . $action_name . "', 
                     action_description = '" . $action_description . "', 
                     action_promise_date = '" . $action_promise_date . "', action_department = '" . $action_department . "'  

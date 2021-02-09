@@ -8,7 +8,7 @@ global $connection;
 $per = 0;
 
 $query = "SELECT COUNT(*) as cuenta FROM actions 
-WHERE action_meeting_id = {$_GET['meeting_id']}";
+WHERE action_meeting_id = {$_GET['meeting_id']} AND action_complete = 0";
 
 $result = mysqli_query($connection,$query);
 $row  = mysqli_fetch_array($result); 

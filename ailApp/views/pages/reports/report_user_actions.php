@@ -15,7 +15,7 @@
     </div>
         <div class="card-body">
 
-            <div class="row">
+            <div style="margin-bottom: 50px;" class="row">
                 <div class="form-group col-lg-2">
                     <label>Start Date</label>
                     <input type="text" name="start_date" id="" class="form-control datepicker" required>

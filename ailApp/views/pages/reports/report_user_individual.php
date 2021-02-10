@@ -58,7 +58,7 @@ $stmt->close();
                     WHERE meetings.meeting_id = {$_GET['meeting_id']} AND action_end_date != '0000-00-00' AND action_complete = 1 ORDER BY actions.action_promise_date";
                     */
 
-                    echo $query = "SELECT * FROM action_responsible 
+                    $query = "SELECT * FROM action_responsible 
                     LEFT JOIN actions ON action_responsible.a_action_id = actions.action_id 
                     LEFT JOIN users ON action_responsible.a_responsible_user = users.user_id 
                     WHERE action_responsible.a_responsible_user = {$_GET['user']} ORDER BY a_responsible_date  
@@ -95,16 +95,23 @@ $stmt->close();
                                     }
                                     else
                                     {
-                                        if($row['action_promise_date'] >= $row['action_end_date'])
+                                        if($row['action_complete'] == 0 && $row['action_promise_date'] > date("Y-m-d"))
+                                        {
+                                            echo "<b style='color:green'>On Going & On Time </b><br>";
+                                        }
+                                        elseif($row['action_complete'] == 0 && $row['action_promise_date'] < date("Y-m-d"))
+                                        {
+                                            echo "<b style='color:red'>On Going & Late </b><br>";
+                                        }   
+                                        elseif($row['action_complete'] == 1 && $row['action_promise_date'] >= $row['action_end_date'])
                                         {
                                             echo "<b style='color:green'>On Time! </b><br>";
                                         }
-                                        else
+                                        elseif($row['action_complete'] == 1 && $row['action_promise_date'] <= $row['action_end_date'])
                                         {
                                             echo "<b style='color:red'>Late</b><br>";
                                             $dlate = round(strtotime($row['action_end_date']) - strtotime($row['action_promise_date']));
                                             echo $dlate / (60 * 60 * 24) . " Day(s)";
-    
                                         }
                                     }
                                     

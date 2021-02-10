@@ -4,7 +4,7 @@ $(function() {
 
     $('.datepicker').datepicker({
         format: 'mm/dd/yyyy',
-        startDate: '-3d'
+        //startDate: '-3d'
     });
 
     $('.datepicker-complete').datepicker({

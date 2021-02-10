@@ -30,11 +30,11 @@ foreach ($images as $key => $image)
         $data[$key]['success'] = true;
         $data[$key]['src'] = $name;
 
-
+        
         $user_action = "INSERT INTO user_actions (u_a_description, u_a_action_id, u_a_date_time, u_a_user_id) 
         VALUES ('Uploaded File $uploadfile', $action_id, '$today', {$_SESSION['quatroapp_user_id']} )";
-        $insert_user_action = $this->db_connection->query($user_action);
-
+        $run = mysqli_query($connection, $user_action);
+        
 
 
         $new_url = str_replace('../../../', '', $uploadfile);

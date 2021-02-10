@@ -145,10 +145,15 @@ $stmt->close();
                         </div>
                     </div>
 
+                    <?php 
+                        $action_promise_date =  strtotime($row_data['action_promise_date']);
+                        $action_promise_date = date('m-d-Y', $action_promise_date);
+                    ?>
+
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <label>Estimated Completion Date (ECD)</label>
-                            <input type="text" name="ecd"  class="form-control datepicker" value="<?php echo $row_data['action_promise_date'] ?>" required>
+                            <input type="text" name="ecd"  class="form-control datepicker" value="<?php echo $action_promise_date; ?>" required>
                         </div>
                     </div>
                     

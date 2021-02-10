@@ -151,9 +151,15 @@ $stmt->close();
 
                     <div class="row">
                         
+                    <?php 
+                        $meeting_date =  strtotime($row_data['meeting_date']);
+                        $meeting_date = date('m-d-Y', $action_promise_date);
+                    ?>
+
+
                         <div class="form-group col-lg-6">
                             <label>Meeting Date</label>
-                            <input type="text" name="meeting_date" id="meeting_date" value="<?php echo $row_data['meeting_date'] ?>" class="form-control datepicker" required>
+                            <input type="text" name="meeting_date" id="meeting_date" value="<?php echo $meeting_date ?>" class="form-control datepicker" required>
                         </div>
 
                         <div class="form-group col-lg-6">

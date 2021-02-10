@@ -133,10 +133,33 @@ $stmt->close();
                     
                     <?php endwhile; ?>
                 </tbody> 
-
+            </table>
             </div>
         </div>
     </div>
+
+
+
+
+
+
+    <div class="col-lg-4">
+        <div class="card shadow mb-4 ">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Late Vs On Time Graph</h6>
+            </div>
+            <div class="card-body">
+                    
+                    <div id="chart-container">
+                        <canvas id="myChartUser"></canvas>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
 </div>    
 
             

@@ -55,6 +55,7 @@
   <script src="views/assets/vendor/chart.js/Chart.js"></script>
   <script src="ajax/charts/piechart-actions.js"></script>
   <script src="ajax/charts/piechart-projects.js"></script>
+  <script src="ajax/charts/piechart-user.js"></script>
 
   <script src="ajax/alerts/alertnum.js"></script>
   <script src="ajax/alerts/alerttext.js"></script>

@@ -74,6 +74,7 @@
   
 
   <script src="ajax/users/usertable.js"></script>
+  <script src="ajax/users/usertable-menu.js"></script>
   <script src="ajax/machines/machinestable.js"></script>
   <script src="ajax/main.js"></script>
   <script src="ajax/ajaxtables.js"></script>

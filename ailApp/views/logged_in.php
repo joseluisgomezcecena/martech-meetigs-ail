@@ -113,6 +113,11 @@ switch($page)
         include("pages/reports/report_user_completion.php");
     break;
 
+    case "report_user_individual":
+        include("pages/reports/report_user_individual.php");
+    break;
+
+
     case "report":
         include("pages/reports/report.php");
     break;

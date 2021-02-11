@@ -291,7 +291,7 @@ class Action
                     if($result_row->action_promise_date < $action_promise_date)
                     {
                         $new =  $result_row->action_promise_date;
-
+                        echo $new;
                         $sql_ecd = "INSERT INTO ecd_changes (ecd_action_id, ecd_date, ecd_user_id) 
                         VALUES 
                         ($action_id, '$new', {$_SESSION['quatroapp_user_id']})";

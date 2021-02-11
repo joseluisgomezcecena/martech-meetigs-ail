@@ -283,15 +283,14 @@ class Action
                 {
                     //inserting past date
 
-                    $sql_previous = "SELECT * FROM actions WHERE action_name = '" . $action_name . "' AND action_id = $action_id;";
+                    $sql_previous = "SELECT * FROM actions WHERE  action_id = $action_id;";
                     $query_check_date = $this->db_connection->query($sql_previous);
-                    $result_row = $query_check_date->fetch_object();
+                    $result_row_date = $query_check_date->fetch_object();
 
 
-                    if($result_row->action_promise_date < $action_promise_date)
+                    if($result_row_date->action_promise_date < $action_promise_date)
                     {
-                        $new =  $result_row->action_promise_date;
-                        echo $new;
+                        $new =  $result_row_date->action_promise_date;
                         $sql_ecd = "INSERT INTO ecd_changes (ecd_action_id, ecd_date, ecd_user_id) 
                         VALUES 
                         ($action_id, '$new', {$_SESSION['quatroapp_user_id']})";

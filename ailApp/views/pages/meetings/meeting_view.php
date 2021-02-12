@@ -77,11 +77,11 @@ if($_SESSION['quatroapp_user_level'] == 0)
                     <th style="width: 100px;">Action</th>
                     <th>Problem / Observation</th>
                     <th>Department</th>
-                    <th>Team</th>
+                    <th>Responsible</th>
                     <th style="width: 100px;">ECD</th>
                     <th>Time Status</th>
                     <th>Status</th>
-                    <th>Updates</th>
+                    <th>Updates / Comments</th>
                     <th style="width: 100px;" >Actions</th>
                     <th style="width: 100px;">Updates</th>
                 </tr>
@@ -198,7 +198,7 @@ if($_SESSION['quatroapp_user_level'] == 0)
                                 &nbsp;&nbsp;&nbsp;
                                 <a href='index.php?page=action_add_file&action_id=<?php echo $row['action_id']?>&meeting_id=<?php echo $_GET['meeting_id'] ?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Add a file docx, xlsx, csv, pdf or image' style='font-size: 20px; color:#b5b5b5' class='fas fa-file-upload options'></i></a>
                                 &nbsp;&nbsp;&nbsp;
-                                <a href='index.php?page=action_progress&action_id=<?php echo $row['action_id']?>&meeting_id=<?php echo $_GET['meeting_id'] ?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Update progress' style='font-size: 20px; color:#b5b5b5' class='fas fa-tasks options'></i></a>
+                                <a href='index.php?page=action_progress&action_id=<?php echo $row['action_id']?>&meeting_id=<?php echo $_GET['meeting_id'] ?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Update status' style='font-size: 20px; color:#b5b5b5' class='fas fa-tasks options'></i></a>
                             </td>
                         </tr>
                     <?php endwhile; ?>

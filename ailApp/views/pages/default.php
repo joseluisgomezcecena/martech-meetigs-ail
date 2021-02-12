@@ -115,6 +115,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Action</th>
+                    <th>Problem / Observation</th>
                     <th>Meeting</th>
                     <th>Responsbile</th>
                     <th>ECD</th>
@@ -136,6 +137,7 @@
                         <tr>
                             <td><?php echo $row['action_id'];  ?></td>
                             <td><?php echo $row['action_name'];  ?></td>
+                            <td><?php echo $row['action_description'];  ?></td>
                             <td><?php echo $row['meeting_name'];  ?></td>
                             <td>
                                 <?php   

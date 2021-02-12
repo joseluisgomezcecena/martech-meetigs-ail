@@ -20,6 +20,7 @@
                     <th>ID</th>
                     <th>Meeting</th>
                     <th>Date</th>
+                    <th>Purpose</th>
                     <th>Department</th>
                     <th>Organizer</th>
                     <th>Participants</th>
@@ -70,6 +71,7 @@
                             <td style="text-align: center;"><?php echo $row['meeting_id'];  ?></td>
                             <td style="text-align: center;"><?php echo $row['meeting_name'];  ?></td>
                             <td style="text-align: center;"><?php echo date('m-d-Y', strtotime($row['meeting_date']));  ?></td>
+                            <td style="text-align: center;"><?php echo $row['meeting_description'];  ?></td>
                             <td style="text-align: center;"><?php echo $row['department_name'];  ?></td>
                             <td style="text-align: center;"><?php echo $row['user_name'];  ?></td>
                             <td style="text-align: center;">

@@ -75,12 +75,12 @@ if($_SESSION['quatroapp_user_level'] == 0)
                 <tr>
                     <th>ID</th>
                     <th style="width: 100px;">Action</th>
-                    <th>Description</th>
+                    <th>Problem / Observation</th>
                     <th>Department</th>
                     <th>Team</th>
-                    <th style="width: 100px;">Promise Date</th>
+                    <th style="width: 100px;">ECD</th>
+                    <th>Time Status</th>
                     <th>Status</th>
-                    <th>Completion</th>
                     <th>Updates</th>
                     <th style="width: 100px;" >Actions</th>
                     <th style="width: 100px;">Updates</th>

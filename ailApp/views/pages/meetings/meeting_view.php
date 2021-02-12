@@ -82,7 +82,7 @@ if($_SESSION['quatroapp_user_level'] == 0)
                     <th>Time Status</th>
                     <th>Status</th>
                     <th>Updates / Comments</th>
-                    <th style="width: 100px;" >Actions</th>
+                    <th style="width: 100px;" >Options</th>
                     <th style="width: 100px;">Updates</th>
                 </tr>
                 </thead>

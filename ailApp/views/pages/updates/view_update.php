@@ -75,11 +75,11 @@ $stmt->close();
                         <br>
                         <b>Parent Meeting: </b><?php echo $row['meeting_name']; ?>
                         <br>
-                        <b>Responsible Department: </b><?php echo $row['department_name']; ?>
+                        <b>Department: </b><?php echo $row['department_name']; ?>
                         <br>
                         <b>ECD: </b><?php echo date_format(date_create($row['action_promise_date']), "m-d-Y"); ?>
                         <br>
-                        <b>Description: </b><?php echo $row['action_description']; ?>
+                        <b>Problem / Observations: </b><?php echo $row['action_description']; ?>
                         
                         <br>
                         <?php

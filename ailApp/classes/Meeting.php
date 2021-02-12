@@ -476,7 +476,7 @@ class Meeting
                 {
                     if($count == $num)
                     {
-                        echo "c".$count."cou".$num;
+                        //echo "c".$count."cou".$num;
                         $sql = "UPDATE meetings  SET meeting_complete = 1 WHERE meeting_id = $meeting_id";
                         $query_new_user_insert = $this->db_connection->query($sql);
         

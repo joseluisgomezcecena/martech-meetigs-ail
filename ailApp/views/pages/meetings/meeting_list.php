@@ -36,7 +36,7 @@
                         $query = "SELECT * FROM meetings 
                         LEFT JOIN departments ON meetings.meeting_department_id = departments.department_id 
                         LEFT JOIN users as owner ON meetings.meeting_user_id = owner.user_id 
-                        WHERE meeting_active = 1 ";
+                        WHERE meeting_active = 1 AND meeting_complete = 0";
                     }
                     else
                     {
@@ -46,7 +46,7 @@
                         LEFT JOIN users  ON meetings.meeting_user_id = users.user_id
                         LEFT JOIN meeting_attendees ON meeting_attendees.m_a_meeting_id = meetings.meeting_id 
                         WHERE
-                        meeting_attendees.meeting_user_id = {$_SESSION['quatroapp_user_id']} ";
+                        meeting_attendees.meeting_user_id = {$_SESSION['quatroapp_user_id']} AND meeting_complete = 0 AND meeting_active = 1";
                         /*
                         $query = "SELECT * FROM `projects` 
                         LEFT JOIN departments ON projects.meeting_department = departments.department_id  

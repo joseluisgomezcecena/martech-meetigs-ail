@@ -21,7 +21,7 @@
   
 
 <?php 
-  $query = "SELECT * FROM meetings WHERE meeting_user_id = {$_SESSION['quatroapp_user_id']}";
+  $query = "SELECT * FROM meetings WHERE meeting_user_id = {$_SESSION['quatroapp_user_id']} AND meeting_complete = 0";
   $result = mysqli_query($connection, $query);
   while($row = mysqli_fetch_array($result)):
 ?>  

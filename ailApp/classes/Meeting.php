@@ -460,9 +460,10 @@ class Meeting
                 while($result_row = $run->fetch_object())
                 {
                     $completed = $result_row->action_complete;
+                    //$aname = $result_row->action_complete;
                     if($completed == 1)
                     {
-                        $count++;
+                       $count++;
                     }
                 }
 
@@ -473,14 +474,15 @@ class Meeting
                 }
                 else
                 {
-                    if($completed == $num)
+                    if($count == $num)
                     {
-                        //echo "c".$completed."cou".$count;
+                        echo "c".$count."cou".$num;
                         $sql = "UPDATE meetings  SET meeting_complete = 1 WHERE meeting_id = $meeting_id";
                         $query_new_user_insert = $this->db_connection->query($sql);
         
                         if ($query_new_user_insert) 
                         {
+
                             $user_action = "INSERT INTO user_actions (u_a_description, u_a_meeting_id, u_a_date_time, u_a_user_id) 
                             VALUES ('Marked As Completed Meeting', $meeting_id, '$today', {$_SESSION['quatroapp_user_id']} )";
                             $insert_user_action = $this->db_connection->query($user_action);

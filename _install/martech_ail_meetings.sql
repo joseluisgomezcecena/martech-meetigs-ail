@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2021 at 11:24 PM
+-- Generation Time: Feb 13, 2021 at 02:06 AM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -44,12 +44,12 @@ CREATE TABLE `actions` (
 --
 
 INSERT INTO `actions` (`action_id`, `action_meeting_id`, `action_name`, `action_description`, `action_department`, `action_promise_date`, `action_end_date`, `action_status`, `action_complete`) VALUES
-(3, 5, 'Re-escribir aplicación AIL', 'La aplicación AIL no tiene los campos requeridos', 1, '2021-02-11', '2021-02-09', 0, 1),
-(4, 5, 'Review de aplicacion', 'Aprobar la aplicacion para su uso ', 2, '2021-02-15', '2021-02-08', 0, 1),
-(5, 6, 'TMP module rewrite', 'Rewrite tpm module so system does not crash when too many requests are made', 1, '2021-02-19', '0000-00-00', 0, 0),
-(6, 7, 'Confirm email reception', 'Testing of email sending functions, all recipients must confirm they received an email from the AIL program on 2/5/20201 at 3:10pm', 1, '2021-02-05', '0000-00-00', 0, 0),
-(7, 8, 'Create new account on server', 'The previous account was suspended because it was detected as spam', 1, '2021-02-11', '0000-00-00', 0, 0),
-(8, 8, 'Review with results with team', 'Review and share evidence of new account, as well as delivering documentation', 1, '2021-02-12', '0000-00-00', 0, 0);
+(9, 9, 'Accion renombrada 1', 'Descripcion del problema ', 2, '2021-03-01', '2021-02-12', 0, 1),
+(10, 9, 'Accion renombrada dos', 'Descripcion', 1, '2021-03-08', '2021-02-12', 0, 1),
+(18, 10, 'accion unica', 'observacion', 1, '2021-02-11', '0000-00-00', 0, 0),
+(19, 10, 'Otra accion ', 'descripcion', 2, '2021-03-12', '0000-00-00', 0, 0),
+(20, 10, 'accion 3', 'problema', 8, '2021-04-01', '0000-00-00', 0, 0),
+(21, 10, 'accion 4', 'cuatro', 3, '2021-03-12', '0000-00-00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -72,7 +72,8 @@ CREATE TABLE `action_files` (
 --
 
 INSERT INTO `action_files` (`file_id`, `file_project_id`, `file_action_id`, `file_user_id`, `file_name`, `file_url`, `file_active`) VALUES
-(2, 0, 6, 21, 'Blocked emails error ', 'uploads/actions/2021-02-061259177719Capture.PNG', 1);
+(4, 0, 9, 21, 'Nombre de los archivos', 'uploads/actions/2021-02-111889485038Network-topology-diagram-template-1280x720.png', 1),
+(5, 0, 9, 21, 'Nombre de los archivos', 'uploads/actions/2021-02-11550051500network-diagram-example.png', 1);
 
 -- --------------------------------------------------------
 
@@ -94,19 +95,26 @@ CREATE TABLE `action_responsible` (
 --
 
 INSERT INTO `action_responsible` (`a_responsible_id`, `a_action_id`, `a_responsible_user`, `a_responsible_main`, `a_responsible_added_by`, `a_responsible_date`) VALUES
-(14, 5, 21, 0, 21, '2021-02-04'),
-(15, 6, 21, 0, 21, '2021-02-05'),
-(16, 6, 143, 0, 21, '2021-02-05'),
-(17, 6, 144, 0, 21, '2021-02-05'),
-(18, 7, 21, 0, 21, '2021-02-08'),
-(19, 8, 21, 0, 21, '2021-02-08'),
-(20, 8, 135, 0, 21, '2021-02-08'),
-(21, 8, 143, 0, 21, '2021-02-08'),
-(23, 3, 21, 0, 21, '2021-02-08'),
-(36, 4, 21, 0, 21, '2021-02-08'),
-(37, 4, 135, 0, 21, '2021-02-08'),
-(38, 4, 143, 0, 21, '2021-02-08'),
-(39, 4, 151, 0, 21, '2021-02-08');
+(50, 11, 21, 0, 21, '2021-02-10'),
+(52, 12, 143, 0, 21, '2021-02-10'),
+(58, 13, 143, 0, 21, '2021-02-10'),
+(59, 9, 21, 0, 21, '2021-02-10'),
+(60, 9, 143, 0, 21, '2021-02-10'),
+(61, 9, 144, 0, 21, '2021-02-10'),
+(65, 14, 21, 0, 21, '2021-02-10'),
+(66, 14, 143, 0, 21, '2021-02-10'),
+(69, 15, 21, 0, 21, '2021-02-10'),
+(70, 15, 143, 0, 21, '2021-02-10'),
+(83, 17, 21, 0, 21, '2021-02-10'),
+(84, 17, 144, 0, 21, '2021-02-10'),
+(85, 16, 21, 0, 21, '2021-02-10'),
+(86, 16, 143, 0, 21, '2021-02-10'),
+(87, 10, 21, 0, 21, '2021-02-10'),
+(88, 10, 144, 0, 21, '2021-02-10'),
+(89, 18, 21, 0, 21, '2021-02-11'),
+(90, 19, 21, 0, 21, '2021-02-11'),
+(91, 20, 21, 0, 21, '2021-02-11'),
+(92, 21, 21, 0, 21, '2021-02-11');
 
 -- --------------------------------------------------------
 
@@ -128,14 +136,14 @@ CREATE TABLE `action_updates` (
 --
 
 INSERT INTO `action_updates` (`a_update_id`, `a_update_action_id`, `a_update_descr`, `a_update_user`, `a_update_date`, `a_update_percent`) VALUES
-(4, 5, 'ACTION ON GOING - 2021-02-04: Cleaned up server log files, this will help the server be in an optimal condition for testing/development', 21, '2021-02-04', 1),
-(5, 6, 'ACTION ON GOING - 2021-02-05: Email Sender is working correctly but server blocked our smtp server account, sent a ticket to it to unblock and waiting for confirmation', 21, '2021-02-05', 1),
-(6, 6, 'ACTION ON GOING - 2021-02-05: Anabel and Javier Contacted IT, they are checking the problem. All testing is halted until smtp blocking is resolved', 21, '2021-02-05', 1),
-(7, 6, 'ACTION ON GOING - 2021-02-05: Testing is being done', 21, '2021-02-05', 1),
-(8, 3, 'ACTION COMPLETED! - 2021-02-08: Completed rewriting app', 21, '2021-02-08', 1),
-(9, 4, 'ACTION COMPLETED! - 2021-02-08: Completed review, the app was accepted', 21, '2021-02-08', 1),
-(10, 3, 'ACTION ON GOING - 2021-02-08: changed to on going to make changes requested', 21, '2021-02-08', 1),
-(11, 3, 'ACTION COMPLETED! - 2021-02-09: this action has been completed', 21, '2021-02-09', 1);
+(13, 9, 'ACTION COMPLETED! - 2021-02-11: Un update con reporte', 21, '2021-02-11', 1),
+(14, 10, 'ACTION ON GOING - 2021-02-11: on going', 21, '2021-02-11', 1),
+(15, 10, 'ACTION COMPLETED! - 2021-02-11: Completado', 21, '2021-02-11', 1),
+(16, 10, 'ACTION COMPLETED! - 2021-02-11: completed meeting', 21, '2021-02-11', 1),
+(17, 10, 'ACTION COMPLETED! - 2021-02-11: completado', 21, '2021-02-11', 1),
+(18, 10, 'ACTION COMPLETED! - 2021-02-11: Marcar como completada', 21, '2021-02-11', 1),
+(19, 10, 'ACTION COMPLETED! - 2021-02-12: meeting completed', 21, '2021-02-12', 1),
+(20, 9, 'ACTION COMPLETED! - 2021-02-12: Meeting completed', 21, '2021-02-12', 1);
 
 -- --------------------------------------------------------
 
@@ -199,7 +207,7 @@ CREATE TABLE `ecd_changes` (
 --
 
 INSERT INTO `ecd_changes` (`ecd_id`, `ecd_action_id`, `ecd_date`, `ecd_user_id`) VALUES
-(2, 4, '2021-02-14', 21);
+(25, 10, '2021-03-06', 21);
 
 -- --------------------------------------------------------
 
@@ -223,10 +231,8 @@ CREATE TABLE `meetings` (
 --
 
 INSERT INTO `meetings` (`meeting_id`, `meeting_department_id`, `meeting_name`, `meeting_description`, `meeting_date`, `meeting_active`, `meeting_complete`, `meeting_user_id`) VALUES
-(5, 2, 'Aplicacion AIL', '', '2021-01-20', 1, 0, 151),
-(6, 1, 'Andon System Changes', '', '2021-02-04', 1, 0, 143),
-(7, 1, 'Test AIL Email', '', '2021-02-05', 1, 0, 21),
-(8, 1, 'Configure new Email', '', '2021-02-08', 1, 0, 21);
+(9, 2, 'Junta de entrenamiento', 'Una junta de entrenamiento de CBT', '2021-02-10', 1, 1, 21),
+(10, 1, 'meeting 1 accion', 'descripcion', '2021-02-11', 1, 0, 21);
 
 -- --------------------------------------------------------
 
@@ -245,20 +251,10 @@ CREATE TABLE `meeting_attendees` (
 --
 
 INSERT INTO `meeting_attendees` (`meeting_attendee_id`, `m_a_meeting_id`, `meeting_user_id`) VALUES
-(16, 5, 21),
-(17, 5, 135),
-(18, 5, 143),
-(19, 5, 144),
-(20, 5, 151),
-(21, 6, 21),
-(22, 6, 143),
-(23, 6, 144),
-(24, 7, 21),
-(25, 7, 143),
-(26, 7, 144),
-(27, 8, 21),
-(28, 8, 135),
-(29, 8, 143);
+(30, 9, 21),
+(31, 9, 143),
+(32, 9, 144),
+(33, 10, 21);
 
 -- --------------------------------------------------------
 
@@ -318,6 +314,25 @@ CREATE TABLE `user_actions` (
   `u_a_date_time` datetime NOT NULL,
   `u_a_user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Dumping data for table `user_actions`
+--
+
+INSERT INTO `user_actions` (`user_action_id`, `u_a_description`, `u_a_meeting_id`, `u_a_action_id`, `u_a_date_time`, `u_a_user_id`) VALUES
+(2, 'Uploaded File ../../../uploads/actions/2021-02-111889485038Network-topology-diagram-template-1280x720.png', 0, 9, '2021-02-11 03:24:19', 21),
+(3, 'Uploaded File ../../../uploads/actions/2021-02-11550051500network-diagram-example.png', 0, 9, '2021-02-11 03:24:19', 21),
+(4, 'Marked Action As Complete', 0, 10, '2021-02-11 00:00:00', 21),
+(5, 'Marked Action As Complete', 0, 9, '2021-02-11 00:00:00', 21),
+(6, 'Marked Action As Complete', 0, 10, '2021-02-11 00:00:00', 21),
+(7, 'Marked Action As Complete', 0, 10, '2021-02-11 00:00:00', 21),
+(8, 'Marked Action As Complete', 0, 10, '2021-02-11 00:00:00', 21),
+(9, 'Marked As Completed Meeting', 9, 0, '2021-02-11 16:36:51', 21),
+(10, 'Marked Action As Complete', 0, 10, '2021-02-11 00:00:00', 21),
+(11, 'Marked As Completed Meeting', 9, 0, '2021-02-11 16:56:55', 21),
+(12, 'Marked Action As Complete', 0, 10, '2021-02-12 00:00:00', 21),
+(13, 'Marked Action As Complete', 0, 9, '2021-02-12 00:00:00', 21),
+(14, 'Marked As Completed Meeting', 9, 0, '2021-02-12 12:28:47', 21);
 
 --
 -- Indexes for dumped tables
@@ -399,25 +414,25 @@ ALTER TABLE `user_actions`
 -- AUTO_INCREMENT for table `actions`
 --
 ALTER TABLE `actions`
-  MODIFY `action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `action_files`
 --
 ALTER TABLE `action_files`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `action_responsible`
 --
 ALTER TABLE `action_responsible`
-  MODIFY `a_responsible_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `a_responsible_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `action_updates`
 --
 ALTER TABLE `action_updates`
-  MODIFY `a_update_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `a_update_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `config`
@@ -435,19 +450,19 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `ecd_changes`
 --
 ALTER TABLE `ecd_changes`
-  MODIFY `ecd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ecd_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `meetings`
 --
 ALTER TABLE `meetings`
-  MODIFY `meeting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `meeting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `meeting_attendees`
 --
 ALTER TABLE `meeting_attendees`
-  MODIFY `meeting_attendee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `meeting_attendee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -459,7 +474,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_actions`
 --
 ALTER TABLE `user_actions`
-  MODIFY `user_action_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_action_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

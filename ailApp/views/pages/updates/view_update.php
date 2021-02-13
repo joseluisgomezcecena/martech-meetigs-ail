@@ -1,12 +1,5 @@
 <?php
-/*
-$stmt = $connection->prepare(
-    "SELECT * FROM actions 
-    LEFT JOIN meetings ON actions.action_meeting_id = meetings.meeting_id 
-    LEFT JOIN departments ON actions.action_department = departments.department_id
-    WHERE action_id = ?"
-);
-*/
+
 if($_SESSION['quatroapp_user_level'] == 0)
 {
     $stmt = $connection->prepare(

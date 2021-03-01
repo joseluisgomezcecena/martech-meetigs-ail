@@ -37,7 +37,9 @@ $stmt->close();
 <h1 class="h3 mb-4 text-gray-800">Updates For Action: <b><?php echo $row['action_name'] ?></b></h1>
 
 <div style="margin-bottom:15px;">
+    <!--
     <a  href="index.php?page=action_add_update&action_id=<?php echo $row['action_id']; ?>&meeting_id=<?php echo $row['meeting_id'] ?>" id="add-newuser" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ><i class="fas fa-plus fa-sm text-white-50"></i>&nbsp;&nbsp;Add Update</a>
+    -->
     <a  href="index.php?page=action_add_file&action_id=<?php echo $row['action_id']; ?>&meeting_id=<?php echo $row['meeting_id'] ?>" id="add-newuser" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ><i class="fas fa-plus fa-sm text-white-50"></i>&nbsp;&nbsp;Add File</a>
     <a  href="index.php?page=action_progress&action_id=<?php echo $row['action_id']; ?>&meeting_id=<?php echo $row['meeting_id'] ?>" id="add-newuser" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" ><i class="fas fa-plus fa-sm text-white-50"></i>&nbsp;&nbsp;Update Progress</a>
     

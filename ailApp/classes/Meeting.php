@@ -246,8 +246,8 @@ class Meeting
                             }
                         }
 
-                        header("Location: index.php?page=meeting_add&meeting_id=$last_project");
-                        //$this->messages[] = "Meeting saved successfuly.";
+                        //header("Location: index.php?page=meeting_add&meeting_id=$last_project");
+                        $this->messages[] = "Meeting saved successfuly.";
                     } 
                     else 
                     {

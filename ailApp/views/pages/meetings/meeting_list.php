@@ -165,7 +165,10 @@
                             <td style="text-align: center;">
                                 <a href='index.php?page=meeting_view&meeting_id=<?php echo $row['meeting_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='View Meeting' style='font-size: 20px; color:#b5b5b5' class='far fa-eye options'></i></a>
                                 <a href='index.php?page=meeting_edit&meeting_id=<?php echo $row['meeting_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Edit Meeting' style='font-size: 20px; color:#b5b5b5' class='far fa-edit options'></i></a>
-                                <a href='index.php?page=meeting_delete&meeting_id=<?php echo $row['meeting_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Delete Meeting' style='font-size: 20px; color:#b5b5b5' class='far fa-trash-alt options'></i></a>
+
+                                <?php if($_SESSION['quatroapp_user_level'] >= 1): ?>
+                                    <a href='index.php?page=meeting_delete&meeting_id=<?php echo $row['meeting_id']?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Delete Meeting' style='font-size: 20px; color:#b5b5b5' class='far fa-trash-alt options'></i></a>
+                                <?php endif; ?>    
                             </td>
                             <td style="text-align: center;">
                                 <!--    

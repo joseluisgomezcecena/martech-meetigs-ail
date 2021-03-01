@@ -197,8 +197,10 @@ if($_SESSION['quatroapp_user_level'] == 0)
                                 <a href='index.php?page=action_add_update&action_id=<?php echo $row['action_id']?>&meeting_id=<?php echo $_GET['meeting_id'] ?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Add an update to this action' style='font-size: 20px; color:#b5b5b5' class='fas fa-plus-circle options'></i></a>
                                 &nbsp;&nbsp;&nbsp;
                                 <a href='index.php?page=action_add_file&action_id=<?php echo $row['action_id']?>&meeting_id=<?php echo $_GET['meeting_id'] ?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Add a file docx, xlsx, csv, pdf or image' style='font-size: 20px; color:#b5b5b5' class='fas fa-file-upload options'></i></a>
+                                <!--
                                 &nbsp;&nbsp;&nbsp;
                                 <a href='index.php?page=action_progress&action_id=<?php echo $row['action_id']?>&meeting_id=<?php echo $_GET['meeting_id'] ?>'  class=''  data-cat-name='{$row['user_name']}' data-cat-id='{$row['user_id']}'><i data-toggle='tooltip' data-placement='left' title='Update status' style='font-size: 20px; color:#b5b5b5' class='fas fa-tasks options'></i></a>
+                                -->
                             </td>
                         </tr>
                     <?php endwhile; ?>

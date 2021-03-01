@@ -25,7 +25,7 @@ if (isset($meeting)) {
                 text: '$message',
                 type: 'success'
             }).then(function() {
-                window.location = 'index.php?page=project_list';
+                window.location = 'index.php?page=meeting_list';
             });
           });
        </script>
@@ -74,12 +74,12 @@ if (isset($meeting)) {
 
                     <div class="form-group">
                         <label>Meeting Name</label>
-                        <input type="text" name="meeting_name" id="" class="form-control" required>
+                        <input type="text" name="meeting_name" id="" class="form-control" value="<?php if(isset($_POST['meeting_name'])){echo $_POST['meeting_name'];}else{echo '';} ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label>Meeting Description</label>
-                        <textarea name="meeting_description"  class="form-control" rows="5" required></textarea>
+                        <textarea name="meeting_description"  class="form-control" rows="5" required><?php if(isset($_POST['meeting_description'])){echo $_POST['meeting_description'];}else{echo '';} ?></textarea>
                     </div>
 
                     <div class="form-group ">
@@ -91,7 +91,7 @@ if (isset($meeting)) {
                             $run1 = mysqli_query($connection, $query1);
                             while($row1 = mysqli_fetch_array($run1)):
                             ?>
-                                <option value="<?php echo $row1['department_id'] ?>"><?php echo $row1['department_name'] ?></option>
+                                <option <?php if(isset($_POST['meeting_department']) && $_POST['meeting_department'] == $row1['department_id']){echo "selected";}else{echo "";} ?> value="<?php echo $row1['department_id'] ?>"><?php echo $row1['department_name'] ?></option>
                             <?php endwhile; ?>
                           </select>
                     </div>

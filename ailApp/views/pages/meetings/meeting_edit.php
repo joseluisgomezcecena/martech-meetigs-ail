@@ -25,7 +25,7 @@ if (isset($meeting)) {
                 text: '$message',
                 type: 'success'
             }).then(function() {
-                window.location = 'index.php?page=project_list';
+                window.location = 'index.php?page=meeting_list';
             });
           });
        </script>

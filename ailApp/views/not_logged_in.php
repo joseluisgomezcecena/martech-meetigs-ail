@@ -51,7 +51,7 @@ if (isset($login)) {
                   <form method="POST" class="user" action="index.php" name="loginform" autocomplete="off">
                     <div class="form-group">
                       <input style="display: none;" type="email" >  
-                      <input name="user_name" type="text" class="form-control " id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address or User Name..." autocomplete="new-password">
+                      <input name="user_name" type="text" class="form-control " id="exampleInputEmail" aria-describedby="emailHelp" placeholder="User Name..." autocomplete="new-password">
                     </div>
                     <div class="form-group">
                       <input name="user_password" type="password" class="form-control f" id="exampleInputPassword" placeholder="Password" autocomplete="new-password">

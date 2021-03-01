@@ -96,17 +96,19 @@ class Meeting
 
 
 
-                echo $sql = "SELECT * FROM meetings WHERE meeting_name = '" . $meeting_name . "';";
+                $sql = "SELECT * FROM meetings WHERE meeting_name = '" . $meeting_name . "';";
                 $query_check_user_name = $this->db_connection->query($sql);
 
                 if ($query_check_user_name->num_rows == 1) 
                 {
                     $this->errors[] = "Sorry, that meeting is already registered, choose a different name.";
                 }
+                /*
                 elseif($meeting_date < date("Y-m-d"))
                 {
                     $this->errors[] = "Dates dont make sense, please chek that your meeting date is correct.";
                 } 
+                */
                 else 
                 {
                     $sql = "INSERT INTO meetings (meeting_name, meeting_description, meeting_department_id, meeting_date, meeting_user_id)
@@ -208,17 +210,19 @@ class Meeting
 
 
 
-                echo $sql = "SELECT * FROM meetings WHERE meeting_name = '" . $meeting_name . "';";
+                $sql = "SELECT * FROM meetings WHERE meeting_name = '" . $meeting_name . "' AND meeting_active = 1;";
                 $query_check_user_name = $this->db_connection->query($sql);
 
                 if ($query_check_user_name->num_rows == 1) 
                 {
                     $this->errors[] = "Sorry, that meeting is already registered, choose a different name.";
                 }
+                /*
                 elseif($meeting_date < date("Y-m-d"))
                 {
                     $this->errors[] = "Dates dont make sense, please chek that your meeting date is correct.";
                 } 
+                */
                 else 
                 {
                     $sql = "INSERT INTO meetings (meeting_name, meeting_description, meeting_department_id, meeting_date, meeting_user_id)
@@ -242,7 +246,7 @@ class Meeting
                             }
                         }
 
-                        header("Location: index.php?page=action_add&meeting_id=$last_project");
+                        header("Location: index.php?page=meeting_add&meeting_id=$last_project");
                         //$this->messages[] = "Meeting saved successfuly.";
                     } 
                     else 

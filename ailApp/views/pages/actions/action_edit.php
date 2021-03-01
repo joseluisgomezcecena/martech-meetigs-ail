@@ -147,7 +147,7 @@ $stmt->close();
 
                     <?php 
                         $action_promise_date =  strtotime($row_data['action_promise_date']);
-                        $action_promise_date = date('m-d-Y', $action_promise_date);
+                        $action_promise_date = date('m/d/Y', $action_promise_date);
                     ?>
 
                     <div class="row">

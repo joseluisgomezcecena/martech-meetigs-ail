@@ -153,7 +153,7 @@ $stmt->close();
                         
                     <?php 
                         $meeting_date =  strtotime($row_data['meeting_date']);
-                        $meeting_date = date('m-d-Y', $action_promise_date);
+                        $meeting_date = date('m/d/Y', $meeting_date);
                     ?>
 
 

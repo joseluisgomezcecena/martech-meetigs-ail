@@ -137,10 +137,12 @@ class Action
                 {
                     $this->errors[] = "Sorry, that action is already registered for this meeting, choose a different name.";
                 }
+                /*
                 elseif($today > $action_promise_date)
                 {
                     $this->errors[] = "Dates dont make sense, please chek that your start date is before your end date.";
                 } 
+                */
                 else 
                 {
                     $sql = "INSERT INTO actions (action_name, action_description, action_promise_date, action_department, action_meeting_id)

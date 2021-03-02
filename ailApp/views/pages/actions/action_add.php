@@ -90,12 +90,12 @@ $stmt->close();
 
                     <div class="form-group">
                         <label>Action Name</label>
-                        <input type="text" name="action_name"  class="form-control" required>
+                        <input type="text" name="action_name"  class="form-control" value="<?php if(isset($_POST['action_name'])){echo $_POST['action_name'];}else{echo"";} ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label>Problem/Observation</label>
-                        <textarea name="action_description"  class="form-control" rows="5" required></textarea>
+                        <textarea name="action_description"  class="form-control" rows="5" required><?php if(isset($_POST['action_description'])){echo $_POST['action_description'];}else{echo"";} ?></textarea>
                     </div>
 
                     <div class="form-group ">
@@ -107,7 +107,7 @@ $stmt->close();
                             $run1 = mysqli_query($connection, $query1);
                             while($row1 = mysqli_fetch_array($run1)):
                             ?>
-                                <option value="<?php echo $row1['department_id'] ?>"><?php echo $row1['department_name'] ?></option>
+                                <option <?php if(isset($_POST['action_department']) && $_POST['action_department'] == $row1['department_id']){echo "selected";}else{echo"";} ?> value="<?php echo $row1['department_id'] ?>"><?php echo $row1['department_name'] ?></option>
                             <?php endwhile; ?>
                           </select>
                     </div>
@@ -140,7 +140,7 @@ $stmt->close();
                     <div class="row">
                         <div class="form-group col-lg-6">
                             <label>Estimated Completion Date (ECD)</label>
-                            <input type="text" name="ecd"  class="form-control datepicker" required>
+                            <input  type="text" name="ecd"   class="form-control datepicker" value="<?php if(isset($_POST['ecd'])){echo $_POST['ecd'];}else{echo"";} ?>" required>
                         </div>
                     </div>
                                   

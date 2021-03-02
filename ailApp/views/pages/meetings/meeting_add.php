@@ -112,7 +112,7 @@ if (isset($meeting)) {
                                 $result = mysqli_query($connection, $query);
                                 while($row = mysqli_fetch_array($result)):
                                 ?>
-                                    <option <?php if($row['user_id'] == $_SESSION['quatroapp_user_id']){echo "selected";}else{echo "";} ?> value="<?php echo $row['user_id']; ?>"><?php echo $row['user_name']; ?></option>
+                                    <option  <?php if(isset($_POST['meeting_user_id']) && $_POST['meeting_user_id'] == $row['user_id']){echo "selected";}else{echo "";} ?>  <?php if($row['user_id'] == $_SESSION['quatroapp_user_id']){echo "selected";}else{echo "";} ?> value="<?php echo $row['user_id']; ?>"><?php echo $row['user_name']; ?></option>
                                 <?php endwhile; ?>
                             </select>
                         </div>
@@ -121,9 +121,12 @@ if (isset($meeting)) {
                             <label for="id_label_single">Meeting Atendees</label>
                             <select style="width: 100%;" class=" js-example-basic-multiple form-control" id="id_label_multiple" name="responsible[]" multiple="multiple" > 
                                 <?php 
+                                $sel = '';
                                 $query = "SELECT * FROM users WHERE user_active = 1";
                                 $result = mysqli_query($connection, $query);
                                 while($row = mysqli_fetch_array($result)):
+
+                                  
                                 ?>
                                     <option value="<?php echo $row['user_id']; ?>"><?php echo $row['user_name']; ?></option>
                                 <?php endwhile; ?>
@@ -135,7 +138,7 @@ if (isset($meeting)) {
                         
                         <div class="form-group col-lg-6">
                             <label>Meeting Date</label>
-                            <input type="text" name="meeting_date" id="meeting_date" class="form-control datepicker" required>
+                            <input type="text" name="meeting_date" id="meeting_date" class="form-control datepicker" value="<?php if(isset($_POST['meeting_date'])){echo $_POST['meeting_date'];}else{echo '';} ?>" required>
                         </div>
 
                         <div class="form-group col-lg-6">
